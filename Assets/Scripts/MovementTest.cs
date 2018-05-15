@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class MovementTest : MonoBehaviour {
 
+    public Vector3 vec = new Vector3(4f, 0, 3f);
+
+    public Transform[] testWolves;
+
 	void Start () {
-		
-	}
+        RotateWolves();
+    }
 	
+    void RotateWolves() {
+        foreach (Transform trans in testWolves) {
+            trans.localRotation = Quaternion.LookRotation(vec);
+        }
+    }
+
 	void Update () {
-        transform.Translate(new Vector3(6, 0, 5) * Time.deltaTime);
+        if (Input.GetMouseButtonDown(0)) {
+            vec = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f));
+            RotateWolves();
+        }
+        transform.Translate(vec * Time.deltaTime);
 	}
 }

@@ -20,12 +20,14 @@ public class WorldGeneration : MonoBehaviour {
 
     public Vector3 startingPosition;
     Vector3 playerPosition;
+    Vector3 viewPosition;
 
     Dictionary<Vector3, ChunkRequest> chunkDictionary = new Dictionary<Vector3, ChunkRequest>();
 
-    List<Vector3> arr = new List<Vector3>();
-
     void Start () {
+        Application.targetFrameRate = 300;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         cameraRig.position = startingPosition;
         playerPosition = new Vector3(Mathf.FloorToInt(startingPosition.x / tileSize), 0, Mathf.FloorToInt(startingPosition.z / tileSize)); ;
 
@@ -36,13 +38,22 @@ public class WorldGeneration : MonoBehaviour {
 	
 	void Update () {
         Vector3 newPlayerPosition = new Vector3(Mathf.FloorToInt(cameraRig.position.x / tileSize), 0, Mathf.FloorToInt(cameraRig.position.z / tileSize));// cameraRig.position / (int)tileSize;
+        Vector3 newViewPosition = new Vector3(Mathf.FloorToInt(cameraRig.position.x), 0, Mathf.FloorToInt(cameraRig.position.z));
 
         if (newPlayerPosition != playerPosition) {
             LoadArray();
         }
-        UpdateView();
+        if (newViewPosition != viewPosition) {
+            UpdateView();
+        }
+
+        if (isMakingChunks == false && isMakingChunks != needMakingChunks) {
+            isMakingChunks = true;
+            StartCoroutine(MakeChunks());
+        }
 
         playerPosition = newPlayerPosition;
+        viewPosition = newViewPosition;
     }
 
     void LoadArray() {
@@ -52,17 +63,19 @@ public class WorldGeneration : MonoBehaviour {
 
         List<Vector3> list = new List<Vector3>();
 
-        for (int y = -diameter; y <= diameter; y++) {
-            for (int x = -diameter; x <= diameter; x++) {
+        for (int y = -(int)loadDiameter; y <= (int)loadDiameter; y++) {
+            for (int x = -(int)loadDiameter; x <= (int)loadDiameter + 1; x++) {
+
                 Vector3 key = pos + new Vector3(x * tileSize, 0, y * tileSize);
                 float dis = Vector3.Distance(pos, key);
-                if (dis < diameter) {
-                    if (!chunkDictionary.ContainsKey(key)) {
-                        chunkDictionary.Add(key, AddRequest(key, dis));
-                        needMakingChunks = true;
-                    }
-                    list.Add(key);
+
+                if (!chunkDictionary.ContainsKey(key)) {
+                    chunkDictionary.Add(key, AddRequest(key, dis));
+                    needMakingChunks = true;
+                } else {
+                    chunkDictionary[key].activation = dis / (tileSize * loadDiameter);
                 }
+                list.Add(key);
             }
         }
         
@@ -79,22 +92,12 @@ public class WorldGeneration : MonoBehaviour {
             chunkDictionary.Remove(remove[0]);
             remove.RemoveAt(0);
         }
-
-        if (isMakingChunks == false && isMakingChunks != needMakingChunks) {
-            isMakingChunks = true;
-            StartCoroutine(MakeChunks());
-        }
-        Debug.Log(chunkDictionary.Count);
     }
 
     IEnumerator MakeChunks() {
         while (isMakingChunks) {
-            List<ChunkRequest> chunkRequests = new List<ChunkRequest>(chunkDictionary.Values);
-            chunkRequests.Sort((p1, p2) => p1.activation.CompareTo(p2.activation));
-
             ChunkRequest currentRequest = null;
-            foreach (ChunkRequest re in chunkRequests) {
-                //Debug.Log(re.activation);
+            foreach (ChunkRequest re in chunkDictionary.Values) {
                 if (re.gameObject == null) {
                     currentRequest = re;
                     break;
@@ -121,6 +124,7 @@ public class WorldGeneration : MonoBehaviour {
 
     void MakeProceduralChunk(ChunkRequest request) {
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        go.SetActive(false);
         go.transform.localScale = new Vector3(tileSize, 1, tileSize);
         go.transform.position = request.key;
         go.transform.parent = transform;
@@ -128,34 +132,11 @@ public class WorldGeneration : MonoBehaviour {
     }
 
     void MakeTileChunk(ChunkRequest request) {
-        GameObject tile = Resources.Load<GameObject>("Generation/Tiles/Tile");
-
-        MeshFilter[] meshFilters = tile.GetComponentsInChildren<MeshFilter>();
-        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
-        int i = 0;
-        while (i < meshFilters.Length + 1) {
-            if(i == 0) {
-                combine[i].mesh = tile.GetComponent<MeshFilter>().sharedMesh;
-                combine[i].transform = tile.GetComponent<MeshFilter>().transform.localToWorldMatrix;
-                i++;
-            } else {
-                combine[i - 1].mesh = meshFilters[i - 1].sharedMesh;
-                combine[i - 1].transform = Matrix4x4.TRS(request.key + meshFilters[i - 1].transform.localPosition, meshFilters[i - 1].transform.localRotation, meshFilters[i - 1].transform.localScale);
-                i++;
-            }
-        }
-
-        GameObject go = new GameObject();
-        go.name = "woo";
+        GameObject go = Instantiate(Resources.Load<GameObject>("Generation/Tiles/Tile1"));
+        go.name = request.key.ToString();
+        go.transform.position = request.key;
         go.transform.parent = transform;
-
-        MeshFilter filter = go.AddComponent<MeshFilter>();
-        filter.mesh = new Mesh();
-        filter.mesh.CombineMeshes(combine);
-
-        MeshRenderer render = go.AddComponent<MeshRenderer>();
-        render.material = testMaterial;
-
+        go.SetActive(false);
         request.gameObject = go;
     }
 
@@ -200,7 +181,7 @@ public class WorldGeneration : MonoBehaviour {
     bool IsVectorInView(Vector3 origin) {
         Vector3 v3 = Camera.main.WorldToViewportPoint(origin);
         float t1 = -0.1f, t2 = 1.1f;
-        return v3.x > t1 && v3.x < t2 && v3.y > t1 && v3.y < t2 && v3.z > 0;
+        return v3.x > t1 && v3.x < t2 && v3.y > t1 - 0.3f && v3.y < t2 && v3.z > 0;
     }
 
     void OnDrawGizmos() {
