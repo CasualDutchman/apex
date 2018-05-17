@@ -5,7 +5,6 @@ using UnityEngine;
 public class WolfMovement : MonoBehaviour {
 
     InputManager inputManager;
-    CharacterController controller;
     Animator anim;
 
     public float maxSpeed;
@@ -32,6 +31,13 @@ public class WolfMovement : MonoBehaviour {
 
         anim.SetFloat("Blend", velocity.magnitude / maxSpeed);
 
+        Ray ray = new Ray(transform.position + Vector3.up * 30, Vector3.down);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 50, LayerMask.GetMask("Ground"))) {
+            Vector3 pos = transform.position;
+            pos.y = hit.point.y;
+            transform.position = pos;
+        }
 	}
 
     void OnTriggerEnter(Collider other) {

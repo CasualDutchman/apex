@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 135226423589567786}
   - component: {fileID: 143428967384558494}
   - component: {fileID: 114515909661888526}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,7 +1155,7 @@ Animator:
   m_GameObject: {fileID: 1846450639686928}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 89be81c84940a5b459a7e755ecdf8db9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8235505d69bf31340a5273e3d74bf26e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1174,6 +1174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa844af648ffa384ba965043f2a6f136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 4
   velocity: {x: 0, y: 0, z: 0}
 --- !u!135 &135226423589567786
 SphereCollider:

@@ -14,8 +14,9 @@ public class MovementTest : MonoBehaviour {
 	
     void RotateWolves() {
         foreach (Transform trans in testWolves) {
-            if(!vec.Equals(Vector3.zero))
-                trans.localRotation = Quaternion.LookRotation(vec);
+            //if(!vec.Equals(Vector3.zero))
+            //    trans.localRotation = Quaternion.LookRotation(vec);
+            trans.GetComponent<WolfMovement>().velocity = vec;
         }
     }
 

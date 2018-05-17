@@ -103,6 +103,7 @@ public class WorldGeneration : MonoBehaviour {
             if(currentRequest == null) {
                 isMakingChunks = false;
                 needMakingChunks = false;
+                UpdateView();
                 break;
             }
 
