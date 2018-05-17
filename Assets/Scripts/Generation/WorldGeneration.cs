@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GenerationMethod { Procedural, Tiles }
-
 public class WorldGeneration : MonoBehaviour {
-
-    public GenerationMethod generationMethod;
 
     public float tileSize;
     public float loadDiameter = 6;
@@ -16,7 +12,7 @@ public class WorldGeneration : MonoBehaviour {
     public Material testMaterial;
 
     bool isMakingChunks = true;
-    public bool needMakingChunks = true;
+    bool needMakingChunks = true;
 
     public Vector3 startingPosition;
     Vector3 playerPosition;
@@ -110,25 +106,12 @@ public class WorldGeneration : MonoBehaviour {
                 break;
             }
 
-            if (generationMethod == GenerationMethod.Procedural) {
-                MakeProceduralChunk(currentRequest);
-            } else {
-                MakeTileChunk(currentRequest);
-            }
+            MakeTileChunk(currentRequest);
 
             yield return new WaitForEndOfFrame();
         }
 
         yield return 0;
-    }
-
-    void MakeProceduralChunk(ChunkRequest request) {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        go.SetActive(false);
-        go.transform.localScale = new Vector3(tileSize, 1, tileSize);
-        go.transform.position = request.key;
-        go.transform.parent = transform;
-        request.gameObject = go;
     }
 
     void MakeTileChunk(ChunkRequest request) {
