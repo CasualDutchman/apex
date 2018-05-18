@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Season { Spring, Summer, Autumn, Winter }
+
 public class WorldGeneration : MonoBehaviour {
 
     public float tileSize;
@@ -9,7 +11,9 @@ public class WorldGeneration : MonoBehaviour {
 
     public Transform cameraRig;
 
-    public Material testMaterial;
+    public Season season;
+
+    public Material seasonMaterial;
 
     bool isMakingChunks = true;
     bool needMakingChunks = true;
@@ -20,18 +24,29 @@ public class WorldGeneration : MonoBehaviour {
 
     Dictionary<Vector3, ChunkRequest> chunkDictionary = new Dictionary<Vector3, ChunkRequest>();
 
+    GameObject[] tileList;
+
     void Start () {
         Application.targetFrameRate = 300;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
+        tileList = Resources.LoadAll<GameObject>("Generation/Tiles");
+
         cameraRig.position = startingPosition;
         playerPosition = new Vector3(Mathf.FloorToInt(startingPosition.x / tileSize), 0, Mathf.FloorToInt(startingPosition.z / tileSize)); ;
 
+        LoadSeason();
         LoadArray();
         UpdateView();
         StartCoroutine(MakeChunks());
     }
 	
+    void LoadSeason() {
+        //calculate time away and set season
+
+        seasonMaterial.SetFloat("_Blend", season == Season.Spring ? 0 : (season == Season.Summer ? 1 : (season == Season.Autumn ? 2 : 3)));
+    }
+
 	void Update () {
         Vector3 newPlayerPosition = new Vector3(Mathf.FloorToInt(cameraRig.position.x / tileSize), 0, Mathf.FloorToInt(cameraRig.position.z / tileSize));// cameraRig.position / (int)tileSize;
         Vector3 newViewPosition = new Vector3(Mathf.FloorToInt(cameraRig.position.x), 0, Mathf.FloorToInt(cameraRig.position.z));
@@ -116,7 +131,34 @@ public class WorldGeneration : MonoBehaviour {
     }
 
     void MakeTileChunk(ChunkRequest request) {
-        GameObject go = Instantiate(Resources.Load<GameObject>("Generation/Tiles/Tile1"));
+        GameObject go = Instantiate(tileList[Random.Range(0, tileList.Length)]);
+
+        Transform springItem = go.transform.Find("spring");
+        Transform summerItem = go.transform.Find("summer");
+        Transform autumnItem = go.transform.Find("autumn");
+        Transform winterItem = go.transform.Find("winter");
+
+        if (season == Season.Spring) {
+            if (summerItem != null) Destroy(summerItem.gameObject);
+            if (autumnItem != null) Destroy(autumnItem.gameObject);
+            if (winterItem != null) Destroy(winterItem.gameObject);
+        }
+        else if (season == Season.Summer) {
+            if (springItem != null) Destroy(springItem.gameObject);
+            if (autumnItem != null) Destroy(autumnItem.gameObject);
+            if (winterItem != null) Destroy(winterItem.gameObject);
+        }
+        else if (season == Season.Autumn) {
+            if (summerItem != null) Destroy(summerItem.gameObject);
+            if (springItem != null) Destroy(springItem.gameObject);
+            if (winterItem != null) Destroy(winterItem.gameObject);
+        }
+        else if (season == Season.Winter) {
+            if (summerItem != null) Destroy(summerItem.gameObject);
+            if (autumnItem != null) Destroy(autumnItem.gameObject);
+            if (springItem != null) Destroy(springItem.gameObject);
+        }
+
         go.name = request.key.ToString();
         go.transform.position = request.key;
         go.transform.parent = transform;
@@ -168,7 +210,7 @@ public class WorldGeneration : MonoBehaviour {
         return v3.x > t1 && v3.x < t2 && v3.y > t1 - 0.3f && v3.y < t2 && v3.z > 0;
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmosSelected() {
         foreach (KeyValuePair<Vector3, ChunkRequest> chunk in chunkDictionary) {
             if (chunk.Value.gameObject == null) {
                 Gizmos.color = Color.white;

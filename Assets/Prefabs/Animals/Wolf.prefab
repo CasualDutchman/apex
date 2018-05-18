@@ -516,7 +516,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4872565371461228}
   - component: {fileID: 95124943187088162}
-  - component: {fileID: 135226423589567786}
   - component: {fileID: 143428967384558494}
   - component: {fileID: 114515909661888526}
   m_Layer: 9
@@ -1028,7 +1027,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1846450639686928}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1036,7 +1035,7 @@ Transform:
   - {fileID: 4118857919458432}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4875150682568978
 Transform:
   m_ObjectHideFlags: 1
@@ -1176,18 +1175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 4
   velocity: {x: 0, y: 0, z: 0}
---- !u!135 &135226423589567786
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1846450639686928}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.5
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &137483760519663958
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

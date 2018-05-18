@@ -18,7 +18,7 @@ public class WolfMovement : MonoBehaviour {
 	
 	void Update () {
         Vector3 input = inputManager.GetInputVector();
-        if(input.magnitude > 0) {
+        if(input.magnitude >= 0) {
             velocity = input * maxSpeed;
         }else {
             //Find Location in pack
