@@ -3,8 +3,9 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+Assets/Imports/*
 Imports/
-TextMesh Pro/
+Assets/Imports/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
