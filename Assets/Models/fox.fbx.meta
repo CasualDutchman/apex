@@ -1,108 +1,98 @@
 fileFormatVersion: 2
-guid: 89be81c84940a5b459a7e755ecdf8db9
-timeCreated: 1522833610
+guid: 93d4c77b9a8459a499eddf8d6d4f616d
+timeCreated: 1525856111
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Armature
-    100002: Cylinder
-    100004: H_foot.L
-    100006: H_foot.L_end
-    100008: H_foot.R
-    100010: H_foot.R_end
-    100012: head
-    100014: head_end
-    100016: lower_F.L.001
-    100018: lower_F.L.002
-    100020: lower_F.L.002_end
-    100022: lower_F.L.003
-    100024: lower_F.L.003_end
-    100026: lower_F.R.001
-    100028: lower_F.R.002
-    100030: lower_F.R.002_end
-    100032: lower_F.R.003
-    100034: lower_F.R.003_end
-    100036: lower_H_leg.L.001
+    100002: Cylinder.001
+    100004: F_footIK.L
+    100006: F_footIK.L_end
+    100008: F_footIK.R
+    100010: F_footIK.R_end
+    100012: //RootNode
+    100014: H_foot.L
+    100016: H_foot.L_end
+    100018: H_foot.R
+    100020: H_foot.R_end
+    100022: head
+    100024: head_end
+    100026: lower_F.L.001
+    100028: lower_F.L.001_end
+    100030: lower_F.R.001
+    100032: lower_F.R.001_end
+    100034: lower_H_leg.L.001
+    100036: lower_H_leg.L.001_end
     100038: lower_H_leg.R.001
-    100040: lower_H_toe.L
-    100042: lower_H_toe.L_end
-    100044: lower_H_toe.R
-    100046: lower_H_toe.R_end
-    100048: Neck.001
-    100050: Neck.001_L
-    100052: Neck.001_L_end
-    100054: Neck.001_R
-    100056: Neck.001_R_end
-    100058: Spine.001
-    100060: Spine.002
-    100062: Tail.001
-    100064: Tail.002
-    100066: Tail.002_end
-    100068: upper_F.L.001
-    100070: upper_F.R.002
-    100072: upper_H_leg.L.001
-    100074: upper_H_leg.R.001
-    100076: //RootNode
+    100040: lower_H_leg.R.001_end
+    100042: Neck.001
+    100044: Neck.001_L
+    100046: Neck.001_L_end
+    100048: Neck.001_R
+    100050: Neck.001_R_end
+    100052: Spine.001
+    100054: Spine.002
+    100056: Tail.001
+    100058: Tail.002
+    100060: Tail.002_end
+    100062: upper_F.L.001
+    100064: upper_F.R.002
+    100066: upper_H_leg.L.001
+    100068: upper_H_leg.R.001
     400000: Armature
-    400002: Cylinder
-    400004: H_foot.L
-    400006: H_foot.L_end
-    400008: H_foot.R
-    400010: H_foot.R_end
-    400012: head
-    400014: head_end
-    400016: lower_F.L.001
-    400018: lower_F.L.002
-    400020: lower_F.L.002_end
-    400022: lower_F.L.003
-    400024: lower_F.L.003_end
-    400026: lower_F.R.001
-    400028: lower_F.R.002
-    400030: lower_F.R.002_end
-    400032: lower_F.R.003
-    400034: lower_F.R.003_end
-    400036: lower_H_leg.L.001
+    400002: Cylinder.001
+    400004: F_footIK.L
+    400006: F_footIK.L_end
+    400008: F_footIK.R
+    400010: F_footIK.R_end
+    400012: //RootNode
+    400014: H_foot.L
+    400016: H_foot.L_end
+    400018: H_foot.R
+    400020: H_foot.R_end
+    400022: head
+    400024: head_end
+    400026: lower_F.L.001
+    400028: lower_F.L.001_end
+    400030: lower_F.R.001
+    400032: lower_F.R.001_end
+    400034: lower_H_leg.L.001
+    400036: lower_H_leg.L.001_end
     400038: lower_H_leg.R.001
-    400040: lower_H_toe.L
-    400042: lower_H_toe.L_end
-    400044: lower_H_toe.R
-    400046: lower_H_toe.R_end
-    400048: Neck.001
-    400050: Neck.001_L
-    400052: Neck.001_L_end
-    400054: Neck.001_R
-    400056: Neck.001_R_end
-    400058: Spine.001
-    400060: Spine.002
-    400062: Tail.001
-    400064: Tail.002
-    400066: Tail.002_end
-    400068: upper_F.L.001
-    400070: upper_F.R.002
-    400072: upper_H_leg.L.001
-    400074: upper_H_leg.R.001
-    400076: //RootNode
-    4300000: Cylinder
-    7400000: wolf/Idle
-    7400002: wolf/Walking
-    7400004: wolf/Running
-    7400006: wolf/Howling
-    7400008: wolf/Sniffing
-    7400010: wolf/Swipe Attack
+    400040: lower_H_leg.R.001_end
+    400042: Neck.001
+    400044: Neck.001_L
+    400046: Neck.001_L_end
+    400048: Neck.001_R
+    400050: Neck.001_R_end
+    400052: Spine.001
+    400054: Spine.002
+    400056: Tail.001
+    400058: Tail.002
+    400060: Tail.002_end
+    400062: upper_F.L.001
+    400064: upper_F.R.002
+    400066: upper_H_leg.L.001
+    400068: upper_H_leg.R.001
+    2100000: Material.001
+    4300000: Cylinder.001
+    7400000: foxRun
+    7400002: Armature|Cylinder|Cylinder|CylinderAction|Cylinder|CylinderAction
+    7400004: foxWalk
+    7400006: foxWake
+    7400008: foxIdle
+    7400010: foxAttack
+    7400012: foxDead
+    7400014: Armature|Animations (6)
     9500000: //RootNode
-    13700000: Cylinder
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: cb365c43c11a3744f85c9c5c7ca16d69, type: 2}
+    13700000: Cylinder.001
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -125,10 +115,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: wolf/Idle
+      name: foxRun
       takeName: Armature|Animations
-      firstFrame: 180
-      lastFrame: 258
+      firstFrame: 0
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -153,10 +143,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Walking
+      name: foxWalk
       takeName: Armature|Animations
-      firstFrame: 30
-      lastFrame: 52
+      firstFrame: 417
+      lastFrame: 439
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -181,10 +171,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Running
+      name: foxWake
       takeName: Armature|Animations
-      firstFrame: 1
-      lastFrame: 25
+      firstFrame: 26
+      lastFrame: 184
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -209,10 +199,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Howling
+      name: foxIdle
       takeName: Armature|Animations
-      firstFrame: 55
-      lastFrame: 96
+      firstFrame: 185
+      lastFrame: 297
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -237,10 +227,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Sniffing
+      name: foxAttack
       takeName: Armature|Animations
-      firstFrame: 100
-      lastFrame: 173
+      firstFrame: 302
+      lastFrame: 416
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -265,17 +255,45 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Swipe Attack
+      name: foxDead
       takeName: Armature|Animations
-      firstFrame: 262
-      lastFrame: 284
+      firstFrame: 450
+      lastFrame: 522
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Animations (6)
+      takeName: Armature|Animations
+      firstFrame: 0
+      lastFrame: 522
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

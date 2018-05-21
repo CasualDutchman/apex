@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
-    public Transform[] wolfList;
-    Vector3 center;
-
+    public WolfManager manager;
     Transform cameraLook;
 
 	void Start () {
@@ -14,13 +12,7 @@ public class CameraMovement : MonoBehaviour {
 	}
 	
 	void Update () {
-        center = Vector3.zero;
-        foreach (Transform trans in wolfList) {
-            center += trans.position;
-        }
-        center /= wolfList.Length;
-
-        transform.position = Vector3.Lerp(transform.position, center, 0.02f);
-        cameraLook.LookAt(center);
+        transform.position = Vector3.Lerp(transform.position, manager.GetCenter(), Time.deltaTime);
+        cameraLook.LookAt(manager.GetCenter());
 	}
 }

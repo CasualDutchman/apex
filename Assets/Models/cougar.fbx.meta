@@ -1,108 +1,95 @@
 fileFormatVersion: 2
-guid: 89be81c84940a5b459a7e755ecdf8db9
-timeCreated: 1522833610
+guid: 1dea50ce30092bd48a1ba040b6dfe1bb
+timeCreated: 1525853953
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Armature
-    100002: Cylinder
-    100004: H_foot.L
-    100006: H_foot.L_end
-    100008: H_foot.R
-    100010: H_foot.R_end
-    100012: head
-    100014: head_end
-    100016: lower_F.L.001
-    100018: lower_F.L.002
-    100020: lower_F.L.002_end
-    100022: lower_F.L.003
-    100024: lower_F.L.003_end
-    100026: lower_F.R.001
-    100028: lower_F.R.002
-    100030: lower_F.R.002_end
-    100032: lower_F.R.003
-    100034: lower_F.R.003_end
-    100036: lower_H_leg.L.001
-    100038: lower_H_leg.R.001
-    100040: lower_H_toe.L
-    100042: lower_H_toe.L_end
-    100044: lower_H_toe.R
-    100046: lower_H_toe.R_end
-    100048: Neck.001
-    100050: Neck.001_L
-    100052: Neck.001_L_end
-    100054: Neck.001_R
-    100056: Neck.001_R_end
-    100058: Spine.001
-    100060: Spine.002
-    100062: Tail.001
-    100064: Tail.002
-    100066: Tail.002_end
-    100068: upper_F.L.001
-    100070: upper_F.R.002
-    100072: upper_H_leg.L.001
-    100074: upper_H_leg.R.001
-    100076: //RootNode
+    100002: //RootNode
+    100004: Cylinder
+    100006: H_foot.L
+    100008: H_foot.L_end
+    100010: H_foot.R
+    100012: H_foot.R_end
+    100014: head
+    100016: head_end
+    100018: lower_F.L.001
+    100020: lower_F.L.002
+    100022: lower_F.L.002_end
+    100024: lower_F.L.003
+    100026: lower_F.L.003_end
+    100028: lower_F.R.001
+    100030: lower_F.R.002
+    100032: lower_F.R.002_end
+    100034: lower_F.R.003
+    100036: lower_F.R.003_end
+    100038: lower_H_leg.L.001
+    100040: lower_H_leg.R.001
+    100042: lower_H_toe.L
+    100044: lower_H_toe.L_end
+    100046: lower_H_toe.R
+    100048: lower_H_toe.R_end
+    100050: Neck.001
+    100052: Spine.001
+    100054: Spine.002
+    100056: Tail.001
+    100058: Tail.002
+    100060: Tail.002_end
+    100062: upper_F.L.001
+    100064: upper_F.R.002
+    100066: upper_H_leg.L.001
+    100068: upper_H_leg.R.001
     400000: Armature
-    400002: Cylinder
-    400004: H_foot.L
-    400006: H_foot.L_end
-    400008: H_foot.R
-    400010: H_foot.R_end
-    400012: head
-    400014: head_end
-    400016: lower_F.L.001
-    400018: lower_F.L.002
-    400020: lower_F.L.002_end
-    400022: lower_F.L.003
-    400024: lower_F.L.003_end
-    400026: lower_F.R.001
-    400028: lower_F.R.002
-    400030: lower_F.R.002_end
-    400032: lower_F.R.003
-    400034: lower_F.R.003_end
-    400036: lower_H_leg.L.001
-    400038: lower_H_leg.R.001
-    400040: lower_H_toe.L
-    400042: lower_H_toe.L_end
-    400044: lower_H_toe.R
-    400046: lower_H_toe.R_end
-    400048: Neck.001
-    400050: Neck.001_L
-    400052: Neck.001_L_end
-    400054: Neck.001_R
-    400056: Neck.001_R_end
-    400058: Spine.001
-    400060: Spine.002
-    400062: Tail.001
-    400064: Tail.002
-    400066: Tail.002_end
-    400068: upper_F.L.001
-    400070: upper_F.R.002
-    400072: upper_H_leg.L.001
-    400074: upper_H_leg.R.001
-    400076: //RootNode
+    400002: //RootNode
+    400004: Cylinder
+    400006: H_foot.L
+    400008: H_foot.L_end
+    400010: H_foot.R
+    400012: H_foot.R_end
+    400014: head
+    400016: head_end
+    400018: lower_F.L.001
+    400020: lower_F.L.002
+    400022: lower_F.L.002_end
+    400024: lower_F.L.003
+    400026: lower_F.L.003_end
+    400028: lower_F.R.001
+    400030: lower_F.R.002
+    400032: lower_F.R.002_end
+    400034: lower_F.R.003
+    400036: lower_F.R.003_end
+    400038: lower_H_leg.L.001
+    400040: lower_H_leg.R.001
+    400042: lower_H_toe.L
+    400044: lower_H_toe.L_end
+    400046: lower_H_toe.R
+    400048: lower_H_toe.R_end
+    400050: Neck.001
+    400052: Spine.001
+    400054: Spine.002
+    400056: Tail.001
+    400058: Tail.002
+    400060: Tail.002_end
+    400062: upper_F.L.001
+    400064: upper_F.R.002
+    400066: upper_H_leg.L.001
+    400068: upper_H_leg.R.001
+    2100000: No Name
     4300000: Cylinder
-    7400000: wolf/Idle
-    7400002: wolf/Walking
-    7400004: wolf/Running
-    7400006: wolf/Howling
-    7400008: wolf/Sniffing
-    7400010: wolf/Swipe Attack
+    7400000: cougarRun
+    7400002: cougarWalk
+    7400004: cougarIdle
+    7400006: cougarAttack
+    7400008: cougarDead
     9500000: //RootNode
     13700000: Cylinder
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: cb365c43c11a3744f85c9c5c7ca16d69, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -125,65 +112,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: wolf/Idle
-      takeName: Armature|Animations
-      firstFrame: 180
-      lastFrame: 258
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: wolf/Walking
-      takeName: Armature|Animations
-      firstFrame: 30
-      lastFrame: 52
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: wolf/Running
-      takeName: Armature|Animations
-      firstFrame: 1
+      name: cougarRun
+      takeName: Armature|Armature|Armature|Animations|Armature|Animations.001
+      firstFrame: 2
       lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
@@ -209,10 +140,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Howling
-      takeName: Armature|Animations
-      firstFrame: 55
-      lastFrame: 96
+      name: cougarWalk
+      takeName: Armature|Armature|Armature|Animations|Armature|Animations.001
+      firstFrame: 29
+      lastFrame: 52
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -237,10 +168,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Sniffing
-      takeName: Armature|Animations
-      firstFrame: 100
-      lastFrame: 173
+      name: cougarIdle
+      takeName: Armature|Armature|Armature|Animations|Armature|Animations.001
+      firstFrame: 61
+      lastFrame: 139
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -265,10 +196,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Swipe Attack
-      takeName: Armature|Animations
-      firstFrame: 262
-      lastFrame: 284
+      name: cougarAttack
+      takeName: Armature|Armature|Armature|Animations|Armature|Animations.001
+      firstFrame: 143
+      lastFrame: 166
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -276,6 +207,34 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: cougarDead
+      takeName: Armature|Armature|Armature|Animations|Armature|Animations.001
+      firstFrame: 170
+      lastFrame: 193
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

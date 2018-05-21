@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Lerp
-  m_Shader: {fileID: 4800000, guid: 266c312fb2edcd748b92ec11a711ea2f, type: 3}
+  m_Name: wolfOutline
+  m_Shader: {fileID: 4800000, guid: 3f4234cfd4051c84d89133661f1b5649, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -39,19 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 01f4fcd0976935f49a17d233d1a97231, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex2:
-        m_Texture: {fileID: 2800000, guid: 08ddef0d265d9b445968f8be78c4d60f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex3:
-        m_Texture: {fileID: 2800000, guid: 0038465e3680f84499f8fd84d068f958, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex4:
-        m_Texture: {fileID: 2800000, guid: ef904c818cdb35a45b21fc9894680a4b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 52c781fb0fb65294b87ded527ed42278, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -66,12 +54,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2:
-        m_Texture: {fileID: 2800000, guid: 41d44b79e0c6c954aa959f15bbce6ef2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Blend: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -82,6 +65,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Outline: 0
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -91,3 +75,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.8897059, g: 0.70201945, b: 0.20934255, a: 1}

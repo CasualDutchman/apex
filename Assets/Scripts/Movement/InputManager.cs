@@ -7,13 +7,10 @@ public class InputManager : MonoBehaviour{
     public float inputMultiplier;
 
     Vector3 input = Vector3.zero;
-
-    RectTransform joyStickArea;
-
     Vector3 begin, dir;
 
     void Start () {
-        joyStickArea = GetComponent<RectTransform>();
+
     }
 
     private void Update() {

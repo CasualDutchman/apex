@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 89be81c84940a5b459a7e755ecdf8db9
-timeCreated: 1522833610
+guid: ea2bf51d5c9839044891b22ddaff978e
+timeCreated: 1525853954
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -83,26 +83,23 @@ ModelImporter:
     400072: upper_H_leg.L.001
     400074: upper_H_leg.R.001
     400076: //RootNode
+    2100000: No Name
     4300000: Cylinder
-    7400000: wolf/Idle
-    7400002: wolf/Walking
-    7400004: wolf/Running
-    7400006: wolf/Howling
-    7400008: wolf/Sniffing
-    7400010: wolf/Swipe Attack
+    7400000: wolfWalk
+    7400002: wolfRun
+    7400004: wolfHowl
+    7400006: wolfIdle
+    7400008: wolfSniffing
+    7400010: wolfAttack
+    7400012: wolfDead
     9500000: //RootNode
     13700000: Cylinder
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: cb365c43c11a3744f85c9c5c7ca16d69, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -125,10 +122,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: wolf/Idle
+      name: wolfRun
       takeName: Armature|Animations
-      firstFrame: 180
-      lastFrame: 258
+      firstFrame: 1
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -153,7 +150,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Walking
+      name: wolfWalk
       takeName: Armature|Animations
       firstFrame: 30
       lastFrame: 52
@@ -181,35 +178,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Running
-      takeName: Armature|Animations
-      firstFrame: 1
-      lastFrame: 25
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: wolf/Howling
+      name: wolfHowl
       takeName: Armature|Animations
       firstFrame: 55
       lastFrame: 96
@@ -237,7 +206,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Sniffing
+      name: wolfIdle
       takeName: Armature|Animations
       firstFrame: 100
       lastFrame: 173
@@ -265,10 +234,66 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wolf/Swipe Attack
+      name: wolfSniffing
+      takeName: Armature|Animations
+      firstFrame: 180
+      lastFrame: 258
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: wolfAttack
       takeName: Armature|Animations
       firstFrame: 262
-      lastFrame: 284
+      lastFrame: 290
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: wolfDead
+      takeName: Armature|Animations
+      firstFrame: 290
+      lastFrame: 320
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -308,6 +333,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

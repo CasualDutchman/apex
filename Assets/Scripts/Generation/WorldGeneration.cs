@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Season { Spring, Summer, Autumn, Winter }
-
 public class WorldGeneration : MonoBehaviour {
+
+    public SeasonManager seasonManager;
+    public EnemyManager enemyManager;
+
+    [HideInInspector]
+    public float playTime;
 
     public float tileSize;
     public float loadDiameter = 6;
 
     public Transform cameraRig;
-
-    public Season season;
-
-    public Material seasonMaterial;
 
     bool isMakingChunks = true;
     bool needMakingChunks = true;
@@ -35,24 +35,21 @@ public class WorldGeneration : MonoBehaviour {
         cameraRig.position = startingPosition;
         playerPosition = new Vector3(Mathf.FloorToInt(startingPosition.x / tileSize), 0, Mathf.FloorToInt(startingPosition.z / tileSize)); ;
 
-        LoadSeason();
+        
         LoadArray();
         UpdateView();
         StartCoroutine(MakeChunks());
     }
-	
-    void LoadSeason() {
-        //calculate time away and set season
-
-        seasonMaterial.SetFloat("_Blend", season == Season.Spring ? 0 : (season == Season.Summer ? 1 : (season == Season.Autumn ? 2 : 3)));
-    }
 
 	void Update () {
+        playTime = Time.time;
+
         Vector3 newPlayerPosition = new Vector3(Mathf.FloorToInt(cameraRig.position.x / tileSize), 0, Mathf.FloorToInt(cameraRig.position.z / tileSize));// cameraRig.position / (int)tileSize;
         Vector3 newViewPosition = new Vector3(Mathf.FloorToInt(cameraRig.position.x), 0, Mathf.FloorToInt(cameraRig.position.z));
 
         if (newPlayerPosition != playerPosition) {
             LoadArray();
+            enemyManager.UpdateEnemyList((int)playerPosition.x, (int)playerPosition.z);
         }
         if (newViewPosition != viewPosition) {
             UpdateView();
@@ -68,7 +65,6 @@ public class WorldGeneration : MonoBehaviour {
     }
 
     void LoadArray() {
-        int diameter = (int)(tileSize * loadDiameter);
         Vector3 yOffset = new Vector3(0, 0, 1);
         Vector3 pos = (playerPosition + yOffset) * tileSize;
 
@@ -138,25 +134,14 @@ public class WorldGeneration : MonoBehaviour {
         Transform autumnItem = go.transform.Find("autumn");
         Transform winterItem = go.transform.Find("winter");
 
-        if (season == Season.Spring) {
-            if (summerItem != null) Destroy(summerItem.gameObject);
-            if (autumnItem != null) Destroy(autumnItem.gameObject);
-            if (winterItem != null) Destroy(winterItem.gameObject);
-        }
-        else if (season == Season.Summer) {
-            if (springItem != null) Destroy(springItem.gameObject);
-            if (autumnItem != null) Destroy(autumnItem.gameObject);
-            if (winterItem != null) Destroy(winterItem.gameObject);
-        }
-        else if (season == Season.Autumn) {
-            if (summerItem != null) Destroy(summerItem.gameObject);
-            if (springItem != null) Destroy(springItem.gameObject);
-            if (winterItem != null) Destroy(winterItem.gameObject);
-        }
-        else if (season == Season.Winter) {
-            if (summerItem != null) Destroy(summerItem.gameObject);
-            if (autumnItem != null) Destroy(autumnItem.gameObject);
-            if (springItem != null) Destroy(springItem.gameObject);
+        if (springItem != null && seasonManager.season != Season.Spring) Destroy(springItem.gameObject);
+        if (summerItem != null && seasonManager.season != Season.Summer) Destroy(summerItem.gameObject);
+        if (autumnItem != null && seasonManager.season != Season.Autumn) Destroy(autumnItem.gameObject);
+        if (winterItem != null && seasonManager.season != Season.Winter) Destroy(winterItem.gameObject);
+
+        go.GetComponent<Renderer>().material = seasonManager.seasonMaterial;
+        foreach(Transform child in go.transform) {
+            child.GetComponent<Renderer>().material = seasonManager.seasonMaterial;
         }
 
         go.name = request.key.ToString();
