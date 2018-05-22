@@ -49,7 +49,7 @@ public class WorldGeneration : MonoBehaviour {
 
         if (newPlayerPosition != playerPosition) {
             LoadArray();
-            enemyManager.UpdateEnemyList((int)playerPosition.x, (int)playerPosition.z);
+            enemyManager.UpdateEnemyList((int)(playerPosition.x * tileSize), (int)(playerPosition.z * tileSize));
         }
         if (newViewPosition != viewPosition) {
             UpdateView();

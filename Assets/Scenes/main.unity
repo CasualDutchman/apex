@@ -667,8 +667,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5137850295485d45ac5779c27800ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraRig: {fileID: 1368990692}
   radius: 10
   scale: 6
+  despawnRadius: 10
   preys:
   - {fileID: 1747957553965102, guid: fce24829e962d48478b2e5371eb2f629, type: 2}
   - {fileID: 1747957553965102, guid: fce24829e962d48478b2e5371eb2f629, type: 2}
@@ -677,7 +679,7 @@ MonoBehaviour:
   - {fileID: 1662151974225418, guid: cf26e2a79c7ef704d8e37aff81af94d7, type: 2}
   perlin1: 1.2
   perlin2: 1.4
-  bias: 0.1
+  bias: 0.04
   curve:
     serializedVersion: 2
     m_Curve:

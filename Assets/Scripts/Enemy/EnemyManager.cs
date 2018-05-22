@@ -98,8 +98,11 @@ public class EnemyManager : MonoBehaviour {
 
     public static EnemyManager instance;
 
+    public Transform cameraRig;
+
     public int radius;
     public float scale;
+    public float despawnRadius;
 
     public List<GameObject> preys = new List<GameObject>();
     public List<GameObject> predators = new List<GameObject>();
@@ -119,7 +122,6 @@ public class EnemyManager : MonoBehaviour {
     }
 
     public void  UpdateEnemyList(int posX, int posY) {
-        List<Vector3> list = new List<Vector3>();
         for (int y = -radius; y <= radius; y++) {
             for (int x = -radius; x <= radius; x++) {
                 float xPos = posX + (x * scale);
@@ -138,16 +140,14 @@ public class EnemyManager : MonoBehaviour {
                         enemy.homePos = pos;
 
                         enemyDictionary.Add(pos, go);
-                        list.Add(pos);
                     }
                 }
             }
         }
-        //yield return new WaitForEndOfFrame();
 
         List<Vector3> remove = new List<Vector3>();
         foreach (KeyValuePair<Vector3, GameObject> pair in enemyDictionary) {
-            if (!list.Contains(pair.Key)) {
+            if (Vector3.Distance(cameraRig.position, pair.Key) > despawnRadius * scale) {
                 remove.Add(pair.Key);
             }
         }
@@ -155,7 +155,7 @@ public class EnemyManager : MonoBehaviour {
         while (remove.Count > 0) {
             Vector3 v3 = remove[0];
             remove.RemoveAt(0);
-            enemyDictionary.Remove(v3);
+            RemoveEnemy(v3);
         }
     }
 
@@ -179,9 +179,7 @@ public class EnemyManager : MonoBehaviour {
 
         if (type != SpawnType.None) {
             float f2 = Mathf.PerlinNoise(x * perlin2, y * perlin2);
-            //f2 = f2 / 1f;
             i = Mathf.FloorToInt(f2 * (float)(type == SpawnType.Prey ? preys.Count : predators.Count));
-            //Debug.Log(i + " / " + f2);
         }
         return type;
     }

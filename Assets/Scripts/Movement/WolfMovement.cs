@@ -149,7 +149,8 @@ public class WolfMovement : MonoBehaviour, IMoveable {
 
         closest = null;
 
-        wolfState = WolfState.Idle;
+        if(lookList.Count <= 0)
+            wolfState = WolfState.Idle;
     }
 
     void ChangeState() {

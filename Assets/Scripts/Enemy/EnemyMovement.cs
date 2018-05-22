@@ -140,7 +140,7 @@ public class EnemyMovement : MonoBehaviour, IMoveable {
             currentVelocity = Vector3.Lerp(currentVelocity, velocity * currentMaxSpeed, Time.deltaTime * 2);
             currentVelocity.y = 0;
 
-            if (enemy.IsAlive()) {
+            if (enemy.IsAlive() && !isAttacking) {
                 if (currentVelocity != Vector3.zero && currentVelocity.magnitude > float.Epsilon) {
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(currentVelocity), Time.deltaTime * (currentMaxSpeed + 2));
                 }

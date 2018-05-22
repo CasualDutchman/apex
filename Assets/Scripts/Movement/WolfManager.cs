@@ -53,6 +53,6 @@ public class WolfManager : MonoBehaviour {
     }
 
     public Vector3 GetCenter() {
-        return animalCenter;
+        return wolfCenter;
     }
 }
