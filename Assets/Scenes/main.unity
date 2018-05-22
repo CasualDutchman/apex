@@ -347,7 +347,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1662151974225418, guid: cf26e2a79c7ef704d8e37aff81af94d7, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf26e2a79c7ef704d8e37aff81af94d7, type: 2}
@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seasonManager: {fileID: 1454943228}
+  enemyManager: {fileID: 1454943229}
   playTime: 0
   tileSize: 12
   loadDiameter: 4
@@ -666,6 +667,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5137850295485d45ac5779c27800ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 10
+  scale: 6
+  preys:
+  - {fileID: 1747957553965102, guid: fce24829e962d48478b2e5371eb2f629, type: 2}
+  - {fileID: 1747957553965102, guid: fce24829e962d48478b2e5371eb2f629, type: 2}
+  predators:
+  - {fileID: 1662151974225418, guid: cf26e2a79c7ef704d8e37aff81af94d7, type: 2}
+  - {fileID: 1662151974225418, guid: cf26e2a79c7ef704d8e37aff81af94d7, type: 2}
+  perlin1: 1.2
+  perlin2: 1.4
+  bias: 0.1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0.11630814
+      outSlope: 0.11630814
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.001709
+      value: 1
+      inSlope: -0.12395904
+      outSlope: -0.12395904
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &1459279884
 Prefab:
   m_ObjectHideFlags: 0

@@ -42,7 +42,8 @@ public class Enemy : MonoBehaviour, IAttackable {
                 deathRenderer.material.SetColor("_OutlineColor", deathColor);
             }
             if (deadTimer >= 10) {
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                EnemyManager.instance.RemoveEnemy(homePos);
             }
         }
     }
