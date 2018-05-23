@@ -7,6 +7,9 @@ public enum EnemyType { Prey, Predator }
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : MonoBehaviour, IAttackable {
 
+    [HideInInspector]
+    public EnemyManager manager;
+
     Animator anim;
 
     public Vector3 homePos;
@@ -42,9 +45,12 @@ public class Enemy : MonoBehaviour, IAttackable {
                 deathRenderer.material.SetColor("_OutlineColor", deathColor);
             }
             if (deadTimer >= 10) {
-                //Destroy(gameObject);
                 EnemyManager.instance.RemoveEnemy(homePos);
             }
+        }
+
+        if (manager.OutOfReach(transform.position)) {
+            EnemyManager.instance.RemoveEnemy(homePos);
         }
     }
 

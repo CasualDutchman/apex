@@ -24,17 +24,28 @@ public class WorldGeneration : MonoBehaviour {
 
     Dictionary<Vector3, ChunkRequest> chunkDictionary = new Dictionary<Vector3, ChunkRequest>();
 
-    GameObject[] tileList;
+    List<GameObject> tileList = new List<GameObject>();
+    List<GameObject> restingList = new List<GameObject>();
+
+    void Awake() {
+        GetComponent<WolfManager>().startingPosition = startingPosition;
+        cameraRig.position = startingPosition;
+    }
 
     void Start () {
         Application.targetFrameRate = 300;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        tileList = Resources.LoadAll<GameObject>("Generation/Tiles");
+        GameObject[] go = Resources.LoadAll<GameObject>("Generation/Tiles");
+        foreach(GameObject g in go) {
+            if (g.name.ToLower().EndsWith("r")) {
+                restingList.Add(g);
+            } else {
+                tileList.Add(g);
+            }
+        }
 
-        cameraRig.position = startingPosition;
         playerPosition = new Vector3(Mathf.FloorToInt(startingPosition.x / tileSize), 0, Mathf.FloorToInt(startingPosition.z / tileSize)); ;
-
         
         LoadArray();
         UpdateView();
@@ -49,7 +60,6 @@ public class WorldGeneration : MonoBehaviour {
 
         if (newPlayerPosition != playerPosition) {
             LoadArray();
-            enemyManager.UpdateEnemyList((int)(playerPosition.x * tileSize), (int)(playerPosition.z * tileSize));
         }
         if (newViewPosition != viewPosition) {
             UpdateView();
@@ -74,14 +84,14 @@ public class WorldGeneration : MonoBehaviour {
             for (int x = -(int)loadDiameter; x <= (int)loadDiameter + 1; x++) {
 
                 Vector3 key = pos + new Vector3(x * tileSize, 0, y * tileSize);
-                float dis = Vector3.Distance(pos, key);
 
                 if (!chunkDictionary.ContainsKey(key)) {
-                    chunkDictionary.Add(key, AddRequest(key, dis));
+                    chunkDictionary.Add(key, AddRequest(key));
                     needMakingChunks = true;
-                } else {
-                    chunkDictionary[key].activation = dis / (tileSize * loadDiameter);
                 }
+
+                enemyManager.UpdateChunk(pos, x, y, tileSize);
+
                 list.Add(key);
             }
         }
@@ -127,7 +137,12 @@ public class WorldGeneration : MonoBehaviour {
     }
 
     void MakeTileChunk(ChunkRequest request) {
-        GameObject go = Instantiate(tileList[Random.Range(0, tileList.Length)]);
+        GameObject go = null;
+        if (request.isResting) {
+            go = Instantiate(restingList[Random.Range(0, restingList.Count)]);
+        } else {
+            go = Instantiate(tileList[Random.Range(0, tileList.Count)]);
+        }
 
         Transform springItem = go.transform.Find("spring");
         Transform summerItem = go.transform.Find("summer");
@@ -151,10 +166,9 @@ public class WorldGeneration : MonoBehaviour {
         request.gameObject = go;
     }
 
-    ChunkRequest AddRequest(Vector3 pos, float distance) {
+    ChunkRequest AddRequest(Vector3 pos) {
         ChunkRequest request = new ChunkRequest();
         request.key = pos;
-        request.activation = distance / (tileSize * loadDiameter);
 
         return request;
     }
@@ -215,10 +229,8 @@ public class ChunkRequest {
     //position in the world
     public Vector3 key;
 
-    //[0, 1] 1 needs data, 0 doesnt really need data
-    //when the player doesn't move, the world will generate the object with the highest activation first and than the one below that, untill all chunks are filled
-    //there is a possibility for a request to not be executed, because it never got activated
-    public float activation;
+    //in need of resting area
+    public bool isResting;
 
     //The object it needs to keep track off
     //When != null it already has data, so it doesn't need to be generated again

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if (UNITY_EDITOR)
 using UnityEditor;
 
 [CustomEditor(typeof(EnemyManager))]
@@ -83,7 +85,7 @@ public class EditorPerlinSettings : Editor {
         for (int y = 0; y < size; y++) {
             for (int x = 0; x < size; x++) {
                 int i = 0;
-                SpawnType t = manager.GetSpawnType(posX + x, posY + y, out i);
+                SpawnType t = manager.GetSpawnType(posX + (x * 12), posY + (y * 12), out i);
                 //Debug.Log(t.ToString());
                 arr[x, y] = new Vector2(t == SpawnType.None ? 0 : (t == SpawnType.Predator ? 1 : 2), i);
             }
@@ -92,6 +94,8 @@ public class EditorPerlinSettings : Editor {
     }
 }
 
+#endif
+
 public enum SpawnType { None, Prey, Predator }
 
 public class EnemyManager : MonoBehaviour {
@@ -99,6 +103,8 @@ public class EnemyManager : MonoBehaviour {
     public static EnemyManager instance;
 
     public Transform cameraRig;
+
+    public float enemyOutOfCamera;
 
     public int radius;
     public float scale;
@@ -121,41 +127,27 @@ public class EnemyManager : MonoBehaviour {
         instance = this;
     }
 
-    public void  UpdateEnemyList(int posX, int posY) {
-        for (int y = -radius; y <= radius; y++) {
-            for (int x = -radius; x <= radius; x++) {
-                float xPos = posX + (x * scale);
-                float yPos = posY + (y * scale);
-                Vector3 pos = new Vector3(xPos, 0, yPos);
+    public bool OutOfReach(Vector3 pos) {
+        return Vector3.Distance(pos, cameraRig.position) > enemyOutOfCamera;
+    }
 
-                if (!enemyDictionary.ContainsKey(pos)) {
-                    int animalIndex = 0;
-                    SpawnType type = GetSpawnType(posX + x, posY + y, out animalIndex);
+    public void UpdateChunk(Vector3 playerPosition, int x, int y, float tileSize) {
+        Vector3 key = playerPosition + new Vector3(x * tileSize, 0, y * tileSize);
 
-                    if (type != SpawnType.None) {
-                        GameObject go = Instantiate(type == SpawnType.Prey ? preys[animalIndex] : predators[animalIndex]);
-                        go.transform.position = pos;
-                        go.transform.eulerAngles = new Vector3(0, Random.Range(0, 359), 0);
-                        Enemy enemy = go.GetComponent<Enemy>();
-                        enemy.homePos = pos;
+        if (!enemyDictionary.ContainsKey(key)) {
+            int animalIndex = 0;
+            SpawnType type = GetSpawnType((int)key.x, (int)key.z, out animalIndex);
 
-                        enemyDictionary.Add(pos, go);
-                    }
-                }
+            if (type != SpawnType.None) {
+                GameObject go = Instantiate(type == SpawnType.Prey ? preys[animalIndex] : predators[animalIndex]);
+                go.transform.position = key;
+                go.transform.eulerAngles = new Vector3(0, Random.Range(0, 359), 0);
+                Enemy enemy = go.GetComponent<Enemy>();
+                enemy.homePos = key;
+                enemy.manager = this;
+
+                enemyDictionary.Add(key, go);
             }
-        }
-
-        List<Vector3> remove = new List<Vector3>();
-        foreach (KeyValuePair<Vector3, GameObject> pair in enemyDictionary) {
-            if (Vector3.Distance(cameraRig.position, pair.Key) > despawnRadius * scale) {
-                remove.Add(pair.Key);
-            }
-        }
-
-        while (remove.Count > 0) {
-            Vector3 v3 = remove[0];
-            remove.RemoveAt(0);
-            RemoveEnemy(v3);
         }
     }
 

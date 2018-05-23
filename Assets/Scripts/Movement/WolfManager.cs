@@ -13,11 +13,13 @@ public class WolfManager : MonoBehaviour {
     public List<Transform> animalList = new List<Transform>();
     Vector3 animalCenter;
 
+    public Vector3 startingPosition;
+
     void Start () {
         for (int i = 0; i < amountOfWolves; i++) {
             WolfMovement m = Instantiate(wolfObj).GetComponent<WolfMovement>();
             Vector2 ran = Random.insideUnitCircle * amountOfWolves;
-            m.transform.position = new Vector3(ran.x, 0, ran.y);
+            m.transform.position = startingPosition + new Vector3(ran.x, 0, ran.y);
             m.transform.eulerAngles = new Vector3(0, Random.Range(0f, 360f), 0);
             m.manager = this;
             wolfList.Add(m);
