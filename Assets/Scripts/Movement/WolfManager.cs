@@ -7,6 +7,17 @@ public class WolfManager : MonoBehaviour {
     public GameObject wolfObj;
     public int amountOfWolves;
 
+    public float maxhealth;
+    float allHeath;
+
+    public float maxFood;
+    public float food;
+
+    public float maxExperience;
+    public float experience;
+    public int level;
+
+
     List<WolfMovement> wolfList = new List<WolfMovement>();
     Vector3 wolfCenter;
 
@@ -22,11 +33,45 @@ public class WolfManager : MonoBehaviour {
             m.transform.position = startingPosition + new Vector3(ran.x, 0, ran.y);
             m.transform.eulerAngles = new Vector3(0, Random.Range(0f, 360f), 0);
             m.manager = this;
+
+            Wolf wolf = m.GetComponent<Wolf>();
+            wolf.wolfManager = this;
+            wolf.maxHealth = maxhealth;
+            wolf.health = maxhealth;
+
             wolfList.Add(m);
             animalList.Add(m.transform);
         }
-	}
+
+        StartCoroutine(FirstUpdate());
+    }
+
+    IEnumerator FirstUpdate() {
+        yield return new WaitForEndOfFrame();
+        UpdatehealthBar();
+        UpdateExperience();
+        UpdateFoodBar();
+    }
 	
+    public void UpdatehealthBar() {
+        allHeath = 0;
+        foreach (WolfMovement wolf in wolfList) {
+            allHeath += wolf.GetComponent<Wolf>().health;
+        }
+        allHeath /= wolfList.Count;
+
+        UIManager.instance.UpdateHealthBar(allHeath / maxhealth);
+    }
+
+    public void UpdateFoodBar() {
+        UIManager.instance.UpdateFoodBar(food / maxFood);
+    }
+
+    public void UpdateExperience() {
+        UIManager.instance.UpdateExperienceBar(experience, maxExperience);
+        UIManager.instance.UpdateLevelText(level);
+    }
+
     public void KillEnemy(Transform c) {
         foreach (WolfMovement wolf in wolfList) {
             wolf.KilledEnemy(c);

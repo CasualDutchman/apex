@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Wolf : MonoBehaviour, IAttackable {
 
+    public WolfManager wolfManager;
+
     public float maxSpeed;
 
     public float maxHealth;
-    float health;
+    public float health;
     bool dead = false;
 
     public float attackTime;
@@ -19,6 +21,8 @@ public class Wolf : MonoBehaviour, IAttackable {
 
     public void Damage(float f) {
         health -= f;
+        Analyzer.instance.AddWolfDamage(f);
+        wolfManager.UpdatehealthBar();
         if (health <= 0) {
             OnDeath();
         }

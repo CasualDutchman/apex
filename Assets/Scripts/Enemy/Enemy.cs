@@ -4,6 +4,9 @@ using UnityEngine;
 
 public enum EnemyType { Prey, Predator }
 
+public enum AnimalType { Raccoon, Fox, Coyote, Jackal, Dog, Cougar, Tiger, Bear, Grizzly, Reindeer, Moose, Bison, Muskox }
+
+
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : MonoBehaviour, IAttackable {
 
@@ -15,6 +18,7 @@ public class Enemy : MonoBehaviour, IAttackable {
     public Vector3 homePos;
 
     public EnemyType enemyType;
+    public AnimalType animalType = AnimalType.Fox;
 
     public float maxSpeed;
 
@@ -32,7 +36,6 @@ public class Enemy : MonoBehaviour, IAttackable {
 
     void Start() {
         anim = GetComponent<Animator>();
-
         health = maxHealth;
     }
 
@@ -56,6 +59,7 @@ public class Enemy : MonoBehaviour, IAttackable {
 
     public void Damage(float f) {
         health -= f;
+        Analyzer.instance.AddEnemyDamage(f);
         if (health <= 0) {
             OnDeath();
         }

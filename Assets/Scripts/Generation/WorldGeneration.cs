@@ -90,7 +90,7 @@ public class WorldGeneration : MonoBehaviour {
                     needMakingChunks = true;
                 }
 
-                enemyManager.UpdateChunk(pos, x, y, tileSize);
+                enemyManager.UpdateChunk(key);
 
                 list.Add(key);
             }

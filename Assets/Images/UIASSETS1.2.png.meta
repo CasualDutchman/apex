@@ -1,0 +1,491 @@
+fileFormatVersion: 2
+guid: f5746b620f37cd347b2a2fb95fcd8022
+timeCreated: 1525775154
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: FrameSettings1
+    21300002: Shield1.2
+    21300004: Button1.2Clicked
+    21300006: Button1.2
+    21300008: TabFrame1.2
+    21300010: TabFrame1.2Clicked
+    21300012: BarFILL1.2HPHG
+    21300014: BarFILL1.2XP
+    21300016: Bar1.2HPHG
+    21300018: Bar1.2XP
+    21300020: BarFILL1.2XPwhite
+    21300022: Icon1.2Settings
+    21300024: Icon1.2Menu
+    21300026: Icon1.2Shop
+    21300028: Icon1.2ShopClicked
+    21300030: Icon1.2SettingsClicked
+    21300032: Icon1.2MenuClicked
+    21300034: UIASSETS1.2_2
+    21300036: Button1.2RoundSmall
+    21300038: Button1.2RoundSMallClicked
+    21300040: Button1.2RoundBig
+    21300042: Button1.2RoundBigClicked
+    21300044: Arrow1.2
+    21300046: Frame1.2SmallWhite
+    21300048: Frame1.2SmallBlue
+    21300050: Frame1.2Tutorial
+    21300052: Frame1.2Menus
+    21300054: button1.2_off
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FrameSettings1
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 1371
+        width: 580
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 20, z: 20, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Shield1.2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 1494
+        width: 120
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button1.2Clicked
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 1524
+        width: 148
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button1.2
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 1605
+        width: 148
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TabFrame1.2
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 1598
+        width: 252
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TabFrame1.2Clicked
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1513
+        width: 264
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BarFILL1.2HPHG
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1801
+        width: 378
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BarFILL1.2XP
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 1907
+        width: 378
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bar1.2HPHG
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 1783
+        width: 480
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bar1.2XP
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 1885
+        width: 480
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BarFILL1.2XPwhite
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 1908
+        width: 378
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon1.2Settings
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1321
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon1.2Menu
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 1320
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon1.2Shop
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1321
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon1.2ShopClicked
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1153
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon1.2SettingsClicked
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1153
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon1.2MenuClicked
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 1153
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIASSETS1.2_2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 1153
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button1.2RoundSmall
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 1681
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button1.2RoundSMallClicked
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 1681
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button1.2RoundBig
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 1591
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button1.2RoundBigClicked
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 1591
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Arrow1.2
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 1598
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Frame1.2SmallWhite
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1371
+        width: 144
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Frame1.2SmallBlue
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1213
+        width: 144
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Frame1.2Tutorial
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 702
+        width: 620
+        height: 420
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Frame1.2Menus
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 382
+        width: 1360
+        height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

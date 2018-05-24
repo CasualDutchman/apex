@@ -123,6 +123,9 @@ public class WolfMovement : MonoBehaviour, IMoveable {
         while (isAttacking) {
             attackAnimTimer += Time.deltaTime;
             if (attackAnimTimer >= 0.2f && !didAttack) {
+                if (closest == null)
+                    break;
+
                 IAttackable attackable = closest.GetComponent<IAttackable>();
                 attackable.Damage(attackDamage);
 

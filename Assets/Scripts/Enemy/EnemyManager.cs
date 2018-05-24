@@ -131,8 +131,8 @@ public class EnemyManager : MonoBehaviour {
         return Vector3.Distance(pos, cameraRig.position) > enemyOutOfCamera;
     }
 
-    public void UpdateChunk(Vector3 playerPosition, int x, int y, float tileSize) {
-        Vector3 key = playerPosition + new Vector3(x * tileSize, 0, y * tileSize);
+    public void UpdateChunk(Vector3 pos) {
+        Vector3 key = pos;
 
         if (!enemyDictionary.ContainsKey(key)) {
             int animalIndex = 0;

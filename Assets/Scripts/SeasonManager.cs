@@ -54,6 +54,7 @@ public class SeasonManager : MonoBehaviour {
 
                 currentSeason = seasonCode == 0 ? Season.Spring : (seasonCode == 1 ? Season.Summer : (seasonCode == 2 ? Season.Autumn : Season.Winter));
             } else {
+                currentSeason = Season.Spring;
                 saveTime = true;
             }
         }

@@ -1,0 +1,67 @@
+//Hud
+hudleveltext={0}
+hudxptext={0}/{1}
+sidealpha=Alpha
+
+//Settings
+settingstitle=Instellingen
+settinglanguage=Taal
+settingtutorial=Lessen
+settingtutorialstart=Start
+settinggraphical=Kwaliteit
+settingaudio=Audio
+settingaudioonoff=Aan/Uit
+settingon=Aan
+settingoff=Uit
+settinglow=Laag
+settingmedium=Gemiddeld
+settinghigh=Hoog
+
+//animals
+raccoon=wasbeer
+raccoonmulti=wasberen
+fox=vos
+foxmulti=vossen
+coyote=prairiewolf
+coyotemulti=prairiewolven
+jackal=jakhals
+jackalmulti=jakhalzen
+dog=hond
+dogmulti=honden
+cougar=poema
+cougarmulti=poemas
+tiger=tijger
+tigermulti=tijgers
+bear=beer
+bearmulti=beren
+grizzly=grizzly bear
+grizzlymulti=grizzly beren
+reindeer=rendier
+reindeermulti=rendieren
+moose=eland
+moosemulti=elanden
+bison=bizon
+bisonmulti=bizons
+muskox=muskusos
+muskoxmulti=muskusossen
+
+//skills
+kill=Dood {0}/{1} {2} 
+hunt=Jaag op {0}/{1} {2} 
+
+skillhunterinstinctname=Jagers instinct
+skillhunterinstinctdesc=De group doet meer schade aan vijanden (+ 15 schade)
+skillhunterintelligencename=Jagers intellegentie
+skillhunterintelligencedesc=Verplaats sneller (+3 snelheid)
+skillscentpreyname=Geur van de prooi
+skillscentpreydesc=De Alfa can de prooi ruiken van een afstand
+skillseasonedhuntername=Geharde jager
+skillseasonedhunterdesc=Kleine vijanden doen geen schade aan de groep
+skillshareknowledgename=Gedeelde kennis
+skillshareknowledgedesc=Krijg meer ervaring voor het doden van een vijand (+10% xp)
+skillsilenthuntername=Stille jager
+skillsilenthunterdesc=Vijanden kunnen de groep niet aanvallen tijdens het jagen
+skillsurvivalintinctname=Overlevings intinct
+skillsurvivalintinctdesc=De Alfa kan de prooi horen van een afstand
+skillwolfbondname=Band van wolven
+skillwolfbonddesc=De group doet meer schade aan vijanden (+ 5 schade)
