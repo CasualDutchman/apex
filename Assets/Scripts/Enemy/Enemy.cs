@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour, IAttackable {
     float health;
 
     public float experienceGain;
+    public float foodGain;
 
     bool dead = false;
     float deadTimer;
@@ -67,7 +68,7 @@ public class Enemy : MonoBehaviour, IAttackable {
         }
     }
 
-    public void AddHealth(float f) {
+    public void AddHealth(float f, float food) {
         health = Mathf.Clamp(health + f, 0, maxHealth);
     }
 

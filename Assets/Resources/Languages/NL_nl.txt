@@ -3,6 +3,11 @@ hudleveltext={0}
 hudxptext={0}/{1}
 sidealpha=Alpha
 
+//Begin
+whengone=Toen jij weg was:
+gonenormal=De wolven zijn uitgerust\nZe hebben {0} voedsel
+goneattacked=Je bent aangevallen!\nElke wolf is {0} levens verloren\nZe stalen {1} voedsel
+
 //Settings
 settingstitle=Instellingen
 settinglanguage=Taal

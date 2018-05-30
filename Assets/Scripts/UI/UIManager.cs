@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public enum Screens { Hud, Settings, Alpha }
+public enum Screens { Begin, Hud, Settings, Alpha }
 
 [System.Serializable]
 public class SkillHolder {
@@ -15,7 +15,7 @@ public class SkillHolder {
 
 public class UIManager : MonoBehaviour { 
 
-    Screens currentScreen = Screens.Hud;
+    Screens currentScreen = Screens.Begin;
 
     public static UIManager instance;
 
@@ -38,6 +38,10 @@ public class UIManager : MonoBehaviour {
     public string unlocalizedExperience;
     public string unlocalizedLevel;
     public string unlocalizedAlpha;
+
+    [Header("Begin")]
+    public string unlocalizedBeginTitle;
+    public string unlocalizedBeginExplain;
 
     [Header("Alpha")]
     public string unlocalizedAlphaTitle;
@@ -76,7 +80,6 @@ public class UIManager : MonoBehaviour {
                 seasonManager.OnQuit();
                 wolfManager.Save();
                 Analyzer.instance.SendData();
-                //wolfPack.Save();
                 PlayerPrefs.Save();
                 Application.Quit();
             }
@@ -86,11 +89,10 @@ public class UIManager : MonoBehaviour {
     void OnApplicationPause(bool pause) {
         if (pause) {
             skillManager.SaveSkills();
+            seasonManager.OnQuit();
             wolfManager.Save();
             Analyzer.instance.SendData();
-            //wolfPack.Save();
             PlayerPrefs.Save();
-            seasonManager.OnQuit();
         }
     }
 
@@ -101,6 +103,9 @@ public class UIManager : MonoBehaviour {
         RegisterButton(components.buttonSettings, () => ChangeScreen(Screens.Settings));
         RegisterButton(components.buttonAlpha, () => ChangeScreen(Screens.Alpha));
         //RegisterText(components.buttonAlpha.GetChild(0), unlocalizedAlpha);
+
+        //Begin
+        RegisterButton(components.buttonBackBegin, () => ChangeScreen(Screens.Hud));
 
         //Alpha
         RegisterSkill(components.skillA1, 0);
@@ -190,6 +195,7 @@ public class UIManager : MonoBehaviour {
             default: case Screens.Hud: return components.screenHUD;
             case Screens.Alpha: return components.screenAlpha;
             case Screens.Settings: return components.screenSettings;
+            case Screens.Begin: return components.screenBegin;
         }
     }
 

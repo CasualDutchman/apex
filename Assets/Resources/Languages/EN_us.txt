@@ -3,6 +3,11 @@ hudleveltext={0}
 hudxptext={0}/{1}
 sidealpha=Alpha
 
+//Begin
+whengone=When you were gone:
+gonenormal=Your wolves are well rested\nThey ate {0} food
+goneattacked=You got attacked!\nYour wolves lost {0} health each\nThey stole {1} food
+
 //Settings
 settingstitle=Settings
 settinglanguage=Language

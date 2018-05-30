@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f5746b620f37cd347b2a2fb95fcd8022
-timeCreated: 1525775154
+timeCreated: 1527704602
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -32,6 +32,7 @@ TextureImporter:
     21300050: Frame1.2Tutorial
     21300052: Frame1.2Menus
     21300054: button1.2_off
+    21300056: Aim
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -222,12 +223,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 46
-        y: 1783
+        y: 1782
         width: 480
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 95, y: 12, z: 11, w: 10}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -477,6 +478,20 @@ TextureImporter:
         y: 382
         width: 1360
         height: 740
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Aim
+      rect:
+        serializedVersion: 2
+        x: 1775
+        y: 1788
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

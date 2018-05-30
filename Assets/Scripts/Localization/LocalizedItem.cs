@@ -22,9 +22,10 @@ public class LocalizedItem : MonoBehaviour {
         value = LocalizationManager.instance.GetLocalizedValue(key);
 
         if (pars != null && pars.Length > 0) {
-            value = string.Format(value, pars);
+            _text.text = string.Format(value, pars);
+        }else {
+            _text.text = value;
         }
-        _text.text = value;
     }
 
     public void UpdateItem(params object[] par) {  

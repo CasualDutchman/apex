@@ -1677,6 +1677,7 @@ MonoBehaviour:
   maxSpeed: 2.5
   maxHealth: 20
   experienceGain: 20
+  foodGain: 10
   attackTime: 0
   attackDamage: 0
 --- !u!135 &135385743370898252

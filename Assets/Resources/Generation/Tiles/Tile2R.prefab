@@ -500,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addedHealth: 5
+  takenFood: 3
   addHealthTime: 2
 --- !u!135 &135300611884905198
 SphereCollider:

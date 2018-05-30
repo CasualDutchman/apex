@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WolfManager : MonoBehaviour {
 
     public static WolfManager instance;
+
+    public UIComponents components;
+    public UIManager uiManager;
 
     public GameObject wolfObj;
     public int amountOfWolves;
@@ -14,8 +18,9 @@ public class WolfManager : MonoBehaviour {
 
     public float maxFood;
     public float food;
+    float foodTimer;
+    public float foodDepletePS;
 
-    public float maxExperience;
     public float experience;
     public int level;
 
@@ -32,7 +37,7 @@ public class WolfManager : MonoBehaviour {
         instance = this;
     }
 
-    void Start () {
+    void Start () { 
         for (int i = 0; i < amountOfWolves; i++) {
             WolfMovement m = Instantiate(wolfObj).GetComponent<WolfMovement>();
             Vector2 ran = Random.insideUnitCircle * amountOfWolves;
@@ -49,8 +54,75 @@ public class WolfManager : MonoBehaviour {
             animalList.Add(m.transform);
         }
 
+        Load();
+        LoadBeginScreen();
+
         StartCoroutine(FirstUpdate());
     }
+
+    void LoadBeginScreen() {
+        if (PlayerPrefs.HasKey("SavedTime")) {
+            long time = System.Convert.ToInt64(PlayerPrefs.GetString("SavedTime"));
+            System.DateTime oldDate = System.DateTime.FromBinary(time);
+            System.DateTime newDate = System.DateTime.Now;
+            System.TimeSpan differ = newDate.Subtract(oldDate);
+
+            int max = 672;//672 is the amount of 15 min in 7 days
+            int min15 = Mathf.Clamp(Mathf.FloorToInt((float)differ.TotalMinutes / 15f), 0, max);
+            if (min15 > 0) {
+                components.screenBegin.SetActive(true);
+                components.textBeginTitle.GetComponent<TextMeshProUGUI>().text = LocalizationManager.instance.GetLocalizedValue("whengone");
+
+
+                bool attacked = Random.Range(0, 3 + (max * ((1 / 1.035f) * min15))) <= 2;
+                if (attacked) {
+                    for (int i = 0; i < amountOfWolves; i++) {
+                        wolfList[i].GetComponent<Wolf>().health = Mathf.Clamp(wolfList[i].GetComponent<Wolf>().health - 10f, 0, maxhealth);
+                    }
+
+                    string loc = LocalizationManager.instance.GetLocalizedValue("goneattacked");
+                    string value = string.Format(loc, 10.ToString(), min15.ToString());
+                    components.textBeginExplain.GetComponent<TextMeshProUGUI>().text = value.Replace("\\n", "\n");
+                } else {
+                    food = Mathf.Clamp(food - min15, 0, maxFood);
+
+                    string loc = LocalizationManager.instance.GetLocalizedValue("gonenormal");
+                    string value = string.Format(loc, min15.ToString());
+                    components.textBeginExplain.GetComponent<TextMeshProUGUI>().text = value.Replace("\\n", "\n");
+
+                    for (int i = 0; i < amountOfWolves; i++) {
+                        wolfList[i].GetComponent<Wolf>().health = Mathf.Clamp(wolfList[i].GetComponent<Wolf>().health + (min15 * 5), 0, maxhealth);
+                    }
+                }
+            } else {
+                uiManager.ChangeScreen(Screens.Hud);
+            }
+        } else {
+            uiManager.ChangeScreen(Screens.Hud);
+        }
+    }
+
+    void Update() {
+        wolfCenter = Vector3.zero;
+        foreach (WolfMovement wolf in wolfList) {
+            wolfCenter += wolf.transform.position;
+        }
+        wolfCenter /= wolfList.Count;
+
+        animalCenter = Vector3.zero;
+        foreach (Transform animal in animalList) {
+            animalCenter += animal.position;
+        }
+        animalCenter /= animalList.Count;
+
+        foodTimer += Time.deltaTime;
+        if (foodTimer >= 1) {
+            food -= foodDepletePS;
+            UpdateFoodBar();
+            foodTimer -= 1;
+        }
+    }
+
 
     public void Load() {
         if (PlayerPrefs.HasKey("WolfPack")) {
@@ -82,21 +154,39 @@ public class WolfManager : MonoBehaviour {
         }
 
         PlayerPrefs.SetString("Wolfs", str2);
+
+        PlayerPrefs.SetString("SavedTime", System.DateTime.Now.ToBinary().ToString());
     }
 
     IEnumerator FirstUpdate() {
         yield return new WaitForEndOfFrame();
-        Load();
         UpdatehealthBar();
         UpdateExperience();
         UpdateFoodBar();
     }
 
+    float GetMaxExperience() {
+        return 100 + (Mathf.Floor(level / 4f) * 50);
+    }
+
+    public void AddFood(float f) {
+        food = Mathf.Clamp(food + f, 0, maxFood);
+    }
+
+    public void DepleteFood(float f) {
+        food -= f;
+        if (food <= 0) {
+
+        }
+    }
+
     public void AddExperience(float f) {
-        experience += f;
-        if (experience >= maxExperience) {
+        bool b = SkillManager.instance.IsSkillActive("shareKnowledge");
+        float skill = SkillManager.instance.GetSkillShareAmount("shareKnowledge");
+        experience += f + (b ? f * skill : 0);
+        if (experience >= GetMaxExperience()) {
+            experience -= GetMaxExperience();
             level++;
-            experience -= maxExperience;
         }
         UpdateExperience();
     }
@@ -116,7 +206,7 @@ public class WolfManager : MonoBehaviour {
     }
 
     public void UpdateExperience() {
-        UIManager.instance.UpdateExperienceBar(experience, maxExperience);
+        UIManager.instance.UpdateExperienceBar(experience, GetMaxExperience());
         UIManager.instance.UpdateLevelText(level);
     }
 
@@ -124,20 +214,10 @@ public class WolfManager : MonoBehaviour {
         foreach (WolfMovement wolf in wolfList) {
             wolf.KilledEnemy(c);
         }
-    }
 
-	void Update () {
-        wolfCenter = Vector3.zero;
-        foreach (WolfMovement wolf in wolfList) {
-            wolfCenter += wolf.transform.position;
+        if (c.GetComponent<Enemy>()) {
+            AddFood(c.GetComponent<Enemy>().foodGain);
         }
-        wolfCenter /= wolfList.Count;
-
-        animalCenter = Vector3.zero;
-        foreach (Transform animal in animalList) {
-            animalCenter += animal.position;
-        }
-        animalCenter /= animalList.Count;
     }
 
     public Vector3 GetRandomCenter() {

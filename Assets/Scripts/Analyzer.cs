@@ -55,10 +55,6 @@ public class Analyzer : MonoBehaviour {
         dict.Add("Amount bear killed", bearKilled);
         dict.Add("Amount grizzly killed", grizzlyKilled);
         AnalyticsResult result3 = Analytics.CustomEvent("OnEndGamePredator", dict);
-
-        Debug.Log(result.ToString());
-        Debug.Log(result2.ToString());
-        Debug.Log(result3.ToString());
     }
 
     public void AddWolfDamage(float amount) {

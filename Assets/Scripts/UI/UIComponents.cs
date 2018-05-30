@@ -7,7 +7,12 @@ public class UIComponents : MonoBehaviour {
 
     [Header("Screens")]
     public GameObject screenHUD;
-    public GameObject screenAlpha, screenSettings;
+    public GameObject screenAlpha, screenSettings, screenBegin;
+
+    [Header("Begin")]
+    public Transform textBeginTitle;
+    public Transform textBeginExplain;
+    public Transform buttonBackBegin;
 
     [Header("HUD")]
     public Transform imageHealthFill;

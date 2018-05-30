@@ -14,7 +14,7 @@ MonoBehaviour:
   code: seasonedHunter
   unlocalizedName: skillSeasonedHunterName
   unlocalizedDescription: skillSeasonedHunterDesc
-  unlocalizedRequire: hun
+  unlocalizedRequire: hunt
   skillType: 0
   requiredAnimal: 10
   animalCount: 50

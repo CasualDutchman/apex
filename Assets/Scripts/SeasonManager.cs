@@ -30,16 +30,20 @@ public class SeasonManager : MonoBehaviour {
 
     void LoadSeason() {
         if (!overrideSeason) {
-            if (PlayerPrefs.HasKey("SystemTime")) {
-                long time = System.Convert.ToInt64(PlayerPrefs.GetString("SystemTime"));
+            if (PlayerPrefs.HasKey("SeasonTime")) {
+                long time = System.Convert.ToInt64(PlayerPrefs.GetString("SeasonTime"));
                 System.DateTime oldDate = System.DateTime.FromBinary(time);
                 System.DateTime newDate = System.DateTime.Now;
                 System.TimeSpan difer = newDate.Subtract(oldDate);
 
+                #if UNITY_EDITOR
+                Debug.Log(difer.TotalHours + " / " + difer.Days + "d / " + difer.Hours + "h / " + difer.Minutes + "m / " + difer.Seconds + "s");
+                #endif
+
                 int seasonCode = PlayerPrefs.GetInt("Season");
 
-                if (difer.Hours >= 24) {
-                    int dif = Mathf.Abs(Mathf.FloorToInt(difer.Hours / 24));
+                if (difer.TotalHours >= 24) {
+                    int dif = Mathf.Abs(Mathf.FloorToInt((float)difer.TotalHours / 24f));
                     if (dif >= 4)
                         dif = dif % 4;
 
@@ -70,7 +74,7 @@ public class SeasonManager : MonoBehaviour {
 
     public void OnQuit() {
         if (saveTime)
-            PlayerPrefs.SetString("SystemTime", System.DateTime.Now.ToBinary().ToString());
+            PlayerPrefs.SetString("SeasonTime", System.DateTime.Now.ToBinary().ToString());
 
         PlayerPrefs.SetInt("Season", currentSeason == Season.Spring ? 0 : (currentSeason == Season.Summer ? 1 : (currentSeason == Season.Autumn ? 2 : 3)));
     }

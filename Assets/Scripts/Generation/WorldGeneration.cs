@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WorldGeneration : MonoBehaviour {
 
@@ -9,6 +11,13 @@ public class WorldGeneration : MonoBehaviour {
 
     [HideInInspector]
     public float playTime;
+
+    public bool useLoadingScreen;
+    public GameObject loadingScreen;
+    public Image loadingFill;
+    public TextMeshProUGUI loadingText;
+    bool firstLoaded = false;
+    int toLoad = 0, loaded = 0;
 
     public float tileSize;
     public float loadDiameter = 6;
@@ -28,8 +37,18 @@ public class WorldGeneration : MonoBehaviour {
     List<GameObject> restingList = new List<GameObject>();
 
     void Awake() {
+        if (PlayerPrefs.HasKey("StartPos")) {
+            string[] data = PlayerPrefs.GetString("StartPos").Split('/');
+            startingPosition.x = float.Parse(data[0]);
+            startingPosition.z = float.Parse(data[1]);
+        }
+
         GetComponent<WolfManager>().startingPosition = startingPosition;
         cameraRig.position = startingPosition;
+
+        if (useLoadingScreen) {
+            loadingScreen.SetActive(true);
+        }
     }
 
     void Start () {
@@ -95,7 +114,11 @@ public class WorldGeneration : MonoBehaviour {
                 list.Add(key);
             }
         }
-        
+
+        if (!firstLoaded) {
+            toLoad = chunkDictionary.Count;
+        }
+
         List<Vector3> remove = new List<Vector3>();
 
         foreach (KeyValuePair<Vector3, ChunkRequest> chunk in chunkDictionary) {
@@ -120,11 +143,22 @@ public class WorldGeneration : MonoBehaviour {
                     break;
                 }
             }
-            
+
+            if (!firstLoaded) {
+                loaded++;
+                loadingFill.fillAmount = loaded / (float)toLoad;
+                loadingText.text = ((loaded / (float)toLoad) * 100).ToString("F0");
+            }
+
             if(currentRequest == null) {
                 isMakingChunks = false;
                 needMakingChunks = false;
                 UpdateView();
+
+                if (!firstLoaded) {
+                    loadingScreen.SetActive(false);
+                }
+
                 break;
             }
 

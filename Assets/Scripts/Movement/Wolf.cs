@@ -28,9 +28,18 @@ public class Wolf : MonoBehaviour, IAttackable {
         }
     }
 
-    public void AddHealth(float f) {
-        health = Mathf.Clamp(health + f, 0, maxHealth);
-        wolfManager.UpdatehealthBar();
+    public void AddHealth(float f, float g) {
+        if (g > 0) {
+            if (wolfManager.food > 0 && health < maxHealth) {
+                health = Mathf.Clamp(health + f, 0, maxHealth);
+                wolfManager.food = Mathf.Clamp(wolfManager.food - g, 0, wolfManager.maxFood);
+                wolfManager.UpdatehealthBar();
+                wolfManager.UpdateFoodBar();
+            }
+        }else {
+            health = Mathf.Clamp(health + f, 0, maxHealth);
+            wolfManager.UpdatehealthBar();
+        }
     }
 
     void OnDeath() {
