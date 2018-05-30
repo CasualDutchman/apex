@@ -1,6 +1,7 @@
 ﻿
 public interface IAttackable {
 
-    void Damage(float f);
+    void Damage(float f, bool isWolf);
+    void AddHealth(float f);
     bool IsAlive();
 }

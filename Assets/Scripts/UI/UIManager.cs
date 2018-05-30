@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour {
     public UIComponents components;
     public EventSystem eventSystem;
 
+    WolfManager wolfManager;
     Settingsmanager settings;
     SkillManager skillManager;
     SeasonManager seasonManager;
@@ -61,6 +62,7 @@ public class UIManager : MonoBehaviour {
         settings = Settingsmanager.instance;
         skillManager = GetComponent<SkillManager>();
         seasonManager = GetComponent<SeasonManager>();
+        wolfManager = GetComponent<WolfManager>();
         RegisterTexts();
         LoadSettings();
     }
@@ -72,6 +74,8 @@ public class UIManager : MonoBehaviour {
             } else {
                 skillManager.SaveSkills();
                 seasonManager.OnQuit();
+                wolfManager.Save();
+                Analyzer.instance.SendData();
                 //wolfPack.Save();
                 PlayerPrefs.Save();
                 Application.Quit();
@@ -82,6 +86,8 @@ public class UIManager : MonoBehaviour {
     void OnApplicationPause(bool pause) {
         if (pause) {
             skillManager.SaveSkills();
+            wolfManager.Save();
+            Analyzer.instance.SendData();
             //wolfPack.Save();
             PlayerPrefs.Save();
             seasonManager.OnQuit();
@@ -221,7 +227,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void ShowSkillDesc(int i) {
-        Debug.Log("ShowSkill");
+        //Debug.Log("ShowSkill");
         components.skillDescTitle.GetComponent<TextMeshProUGUI>().text = LocalizationManager.instance.GetLocalizedValue(skillManager.skills[i].skill.unlocalizedName);
         components.skillDescDesc.GetComponent<TextMeshProUGUI>().text = LocalizationManager.instance.GetLocalizedValue(skillManager.skills[i].skill.unlocalizedDescription);
 

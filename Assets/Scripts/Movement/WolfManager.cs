@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WolfManager : MonoBehaviour {
 
+    public static WolfManager instance;
+
     public GameObject wolfObj;
     public int amountOfWolves;
 
@@ -26,6 +28,10 @@ public class WolfManager : MonoBehaviour {
 
     public Vector3 startingPosition;
 
+    void Awake() {
+        instance = this;
+    }
+
     void Start () {
         for (int i = 0; i < amountOfWolves; i++) {
             WolfMovement m = Instantiate(wolfObj).GetComponent<WolfMovement>();
@@ -46,13 +52,55 @@ public class WolfManager : MonoBehaviour {
         StartCoroutine(FirstUpdate());
     }
 
+    public void Load() {
+        if (PlayerPrefs.HasKey("WolfPack")) {
+            string[] wolfData = PlayerPrefs.GetString("WolfPack").Split('/');
+            food = float.Parse(wolfData[0]);
+            experience = float.Parse(wolfData[1]);
+            level = int.Parse(wolfData[2]);
+        }
+
+        if (PlayerPrefs.HasKey("Wolfs")) {
+            string[] data = PlayerPrefs.GetString("Wolfs").Split('/');
+            for (int i = 0; i < data.Length; i++) {
+                wolfList[i].GetComponent<Wolf>().health = float.Parse(data[i]);
+            }
+        }
+    }
+
+    public void Save() {
+        string str = "";
+        str += food.ToString("F2") + "/";
+        str += experience.ToString("F2") + "/";
+        str += level.ToString("F0");
+
+        PlayerPrefs.SetString("WolfPack", str);
+
+        string str2 = "";
+        for (int i = 0; i < wolfList.Count; i++) {
+            str2 += wolfList[i].GetComponent<Wolf>().health.ToString("F2") + (i < wolfList.Count - 1 ? "/" : "");
+        }
+
+        PlayerPrefs.SetString("Wolfs", str2);
+    }
+
     IEnumerator FirstUpdate() {
         yield return new WaitForEndOfFrame();
+        Load();
         UpdatehealthBar();
         UpdateExperience();
         UpdateFoodBar();
     }
-	
+
+    public void AddExperience(float f) {
+        experience += f;
+        if (experience >= maxExperience) {
+            level++;
+            experience -= maxExperience;
+        }
+        UpdateExperience();
+    }
+
     public void UpdatehealthBar() {
         allHeath = 0;
         foreach (WolfMovement wolf in wolfList) {

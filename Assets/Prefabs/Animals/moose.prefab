@@ -1676,6 +1676,7 @@ MonoBehaviour:
   animalType: 10
   maxSpeed: 2.5
   maxHealth: 20
+  experienceGain: 20
   attackTime: 0
   attackDamage: 0
 --- !u!135 &135385743370898252

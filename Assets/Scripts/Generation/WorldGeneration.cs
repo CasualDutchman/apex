@@ -156,7 +156,8 @@ public class WorldGeneration : MonoBehaviour {
 
         go.GetComponent<Renderer>().material = seasonManager.seasonMaterial;
         foreach(Transform child in go.transform) {
-            child.GetComponent<Renderer>().material = seasonManager.seasonMaterial;
+            if(child.GetComponent<Renderer>())
+                child.GetComponent<Renderer>().material = seasonManager.seasonMaterial;
         }
 
         go.name = request.key.ToString();
@@ -169,6 +170,12 @@ public class WorldGeneration : MonoBehaviour {
     ChunkRequest AddRequest(Vector3 pos) {
         ChunkRequest request = new ChunkRequest();
         request.key = pos;
+
+        //Debug.Log(pos);
+
+        float f = Mathf.PerlinNoise(pos.x / 1.3f, pos.z / 1.5f);
+        if (f < 0.3f)
+            request.isResting = true;
 
         return request;
     }

@@ -38,7 +38,8 @@ GameObject:
   - component: {fileID: 4325954004753254}
   - component: {fileID: 33335118897045898}
   - component: {fileID: 23407012601933468}
-  m_Layer: 0
+  - component: {fileID: 64330714153747720}
+  m_Layer: 8
   m_Name: Tile3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287350445483178}
   m_LocalRotation: {x: 0.000001809995, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12.74, y: 0, z: 0}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children:
   - {fileID: 4044984304184082}
@@ -442,3 +443,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1974875550902884}
   m_Mesh: {fileID: 4300010, guid: 0583f5052771ede4ba67fb4e960de0a7, type: 3}
+--- !u!64 &64330714153747720
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1287350445483178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 0583f5052771ede4ba67fb4e960de0a7, type: 3}

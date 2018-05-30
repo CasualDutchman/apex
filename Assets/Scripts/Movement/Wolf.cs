@@ -19,13 +19,18 @@ public class Wolf : MonoBehaviour, IAttackable {
         health = maxHealth;
     }
 
-    public void Damage(float f) {
+    public void Damage(float f, bool isWolf) {
         health -= f;
         Analyzer.instance.AddWolfDamage(f);
         wolfManager.UpdatehealthBar();
         if (health <= 0) {
             OnDeath();
         }
+    }
+
+    public void AddHealth(float f) {
+        health = Mathf.Clamp(health + f, 0, maxHealth);
+        wolfManager.UpdatehealthBar();
     }
 
     void OnDeath() {

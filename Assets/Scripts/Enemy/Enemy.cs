@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour, IAttackable {
     public float maxHealth;
     float health;
 
+    public float experienceGain;
+
     bool dead = false;
     float deadTimer;
 
@@ -57,16 +59,20 @@ public class Enemy : MonoBehaviour, IAttackable {
         }
     }
 
-    public void Damage(float f) {
+    public void Damage(float f, bool isWolf) {
         health -= f;
         Analyzer.instance.AddEnemyDamage(f);
         if (health <= 0) {
-            OnDeath();
+            OnDeath(isWolf);
         }
     }
 
+    public void AddHealth(float f) {
+        health = Mathf.Clamp(health + f, 0, maxHealth);
+    }
+
     [ContextMenu("Die")]
-    void OnDeath() {
+    void OnDeath(bool isWolf) {
         dead = true;
         anim.SetBool("Dead", true);
 
@@ -74,6 +80,12 @@ public class Enemy : MonoBehaviour, IAttackable {
 
         deathRenderer = transform.GetChild(1).GetComponent<Renderer>();
         deathColor = deathRenderer.material.GetColor("_OutlineColor");
+
+        if(isWolf)
+            WolfManager.instance.AddExperience(experienceGain);
+
+        Analyzer.instance.KilledEnemy(animalType, enemyType);
+        SkillManager.instance.KillAnimal(animalType);
     }
 
     public bool IsAlive() {

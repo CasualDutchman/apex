@@ -127,7 +127,7 @@ public class WolfMovement : MonoBehaviour, IMoveable {
                     break;
 
                 IAttackable attackable = closest.GetComponent<IAttackable>();
-                attackable.Damage(attackDamage);
+                attackable.Damage(attackDamage, true);
 
                 if (!attackable.IsAlive()) {
                     manager.KillEnemy(closest);

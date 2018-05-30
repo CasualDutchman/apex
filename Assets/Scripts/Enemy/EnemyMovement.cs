@@ -171,7 +171,7 @@ public class EnemyMovement : MonoBehaviour, IMoveable {
             attackAnimTimer += Time.deltaTime;
             if (attackAnimTimer >= 0.2f && !didAttack) {
                 IAttackable attackable = closest.GetComponent<IAttackable>();
-                attackable.Damage(10);
+                attackable.Damage(10, false);
 
                 if (!attackable.IsAlive()) {
                     lookList.Remove(closest);
