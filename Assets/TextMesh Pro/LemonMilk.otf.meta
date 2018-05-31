@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b08c00a5527535f4d8a46f66eb9cff75
+guid: f2d263ffca77cbc41aa70090a99414b1
 timeCreated: 1525729251
 licenseType: Free
 TrueTypeFontImporter:
@@ -13,7 +13,8 @@ TrueTypeFontImporter:
   fontName: Lemon/Milk
   fontNames:
   - Lemon/Milk
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b08c00a5527535f4d8a46f66eb9cff75, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
