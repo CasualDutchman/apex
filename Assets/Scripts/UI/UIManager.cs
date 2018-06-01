@@ -137,7 +137,15 @@ public class UIManager : MonoBehaviour {
     }
 
     public bool IsHittingUI() {
-        return eventSystem.IsPointerOverGameObject();
+        bool b = false;
+#if UNITY_EDITOR
+        b = eventSystem.IsPointerOverGameObject();
+#endif
+#if UNITY_ANDROID
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            b = eventSystem.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+#endif
+        return b;
     }
 
     public bool IsHUD() {
