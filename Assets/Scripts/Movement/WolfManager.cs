@@ -69,6 +69,7 @@ public class WolfManager : MonoBehaviour {
 
             int max = 672;//672 is the amount of 15 min in 7 days
             int min15 = Mathf.Clamp(Mathf.FloorToInt((float)differ.TotalMinutes / 15f), 0, max);
+            Debug.Log(differ.TotalMinutes);
             if (min15 > 0) {
                 components.screenBegin.SetActive(true);
                 components.textBeginTitle.GetComponent<TextMeshProUGUI>().text = LocalizationManager.instance.GetLocalizedValue("whengone");

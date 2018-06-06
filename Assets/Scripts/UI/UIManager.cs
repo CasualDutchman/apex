@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour {
     public UIComponents components;
     public EventSystem eventSystem;
 
+    public bool useIconUI = false;
+
     WolfManager wolfManager;
     Settingsmanager settings;
     SkillManager skillManager;
@@ -49,14 +51,12 @@ public class UIManager : MonoBehaviour {
     [Header("Settings")]
     public string unlocalizedSettingsTitle;
     public string unlocalizedLanguage;
-    public string unlocalizedTutorial;
-    public string unlocalizedTutorialStart;
     public string unlocalizedGraphics;
     public string unlocalizedGraphicsLow;
-    public string unlocalizedGraphicsMed;
     public string unlocalizedGraphicsHigh;
     public string unlocalizedAudio;
-    public string unlocalizedAudioOnOff;
+    public string unlocalizedAudioOn;
+    public string unlocalizedAudioOff;
 
     void Awake() {
         instance = this;
@@ -69,6 +69,14 @@ public class UIManager : MonoBehaviour {
         wolfManager = GetComponent<WolfManager>();
         RegisterTexts();
         LoadSettings();
+
+        if (useIconUI) {
+            components.iconParent.SetActive(true);
+            components.barParent.SetActive(false);
+        } else {
+            components.iconParent.SetActive(false);
+            components.barParent.SetActive(true);
+        }
     }
 
     void Update() {
@@ -99,7 +107,7 @@ public class UIManager : MonoBehaviour {
     void RegisterTexts() {
         //HUD
         RegisterText(components.textExperience, unlocalizedExperience);
-        RegisterText(components.textLevel, unlocalizedLevel);
+        RegisterText(components.textLevelBar, unlocalizedLevel);
         RegisterButton(components.buttonSettings, () => ChangeScreen(Screens.Settings));
         RegisterButton(components.buttonAlpha, () => ChangeScreen(Screens.Alpha));
         //RegisterText(components.buttonAlpha.GetChild(0), unlocalizedAlpha);
@@ -119,16 +127,13 @@ public class UIManager : MonoBehaviour {
         //Settings
         RegisterButton(components.buttonBackSettings, () => ChangeScreen(Screens.Hud));
         RegisterText(components.textSettingsTitle, unlocalizedSettingsTitle);
-        RegisterText(components.textTutorial, unlocalizedTutorial);
-        RegisterText(components.textTutorialStart, unlocalizedTutorialStart);
         RegisterText(components.textLanguage, unlocalizedLanguage);
         RegisterText(components.textGraphical, unlocalizedGraphics);
         RegisterText(components.textGraphicalLow, unlocalizedGraphicsLow);
-        RegisterText(components.textGraphicalMed, unlocalizedGraphicsMed);
         RegisterText(components.textGraphicalHigh, unlocalizedGraphicsHigh);
         RegisterText(components.textAudio, unlocalizedAudio);
-        RegisterText(components.textAudioOnOff, unlocalizedAudioOnOff);
-        RegisterButton(components.buttonTutorial, () => OnTutorial());
+        RegisterText(components.textAudioOn, unlocalizedAudioOn);
+        RegisterText(components.textAudioOff, unlocalizedAudioOff);
         RegisterToggle(components.buttonAudio, (b) => { OnToggleAudio(b); });
         RegisterButton(components.buttonEnglish, () => OnChangeLanguage("EN_us"));
         RegisterButton(components.buttonDutch, () => OnChangeLanguage("NL_nl"));
@@ -260,16 +265,28 @@ public class UIManager : MonoBehaviour {
 
     #region Hud
     public void UpdateHealthBar(float fill) {
-        GetImage(components.imageHealthFill).fillAmount = fill;
+        if (useIconUI) {
+            GetImage(components.imageHealthFillIcon).fillAmount = fill;
+        } else {
+            GetImage(components.imageHealthFillBar).fillAmount = fill;
+        }
     }
 
     public void UpdateFoodBar(float fill) {
-        GetImage(components.imageFoodBarFill).fillAmount = fill;
+        if (useIconUI) {
+            GetImage(components.imageFoodBarFillIcon).fillAmount = fill;
+        } else {
+            GetImage(components.imageFoodBarFillBar).fillAmount = fill;
+        }
     }
 
     public void UpdateExperienceBar(float currentXP, float maxXP) {
-        GetImage(components.imageExperienceBarFill).fillAmount = currentXP / maxXP;
-        UpdateText(unlocalizedExperience, currentXP.ToString("F0"), maxXP.ToString("F0"));
+        if (useIconUI) {
+            GetImage(components.imageExperienceBarFillIcon).fillAmount = currentXP / maxXP;
+        } else {
+            GetImage(components.imageExperienceBarFillBar).fillAmount = currentXP / maxXP;
+            UpdateText(unlocalizedExperience, currentXP.ToString("F0"), maxXP.ToString("F0"));
+        }        
     }
 
     public void UpdateLevelText(int i) {
@@ -288,8 +305,11 @@ public class UIManager : MonoBehaviour {
         //components.buttonGraphics.GetComponent<Toggle>().isOn = settings.graphicalSettings == Graphical.High;
         components.buttonAudio.GetComponent<Toggle>().isOn = settings.audioSettings == OnOff.On;
 
-        components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings == Graphical.High;
-        components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings == Graphical.Low;
+        components.textAudioOn.gameObject.SetActive(settings.audioSettings == OnOff.On);
+        components.textAudioOff.gameObject.SetActive(settings.audioSettings == OnOff.Off);
+
+        components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.High;
+        components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.Low;
 
         settings.EnableSettings();
     }
@@ -300,6 +320,9 @@ public class UIManager : MonoBehaviour {
 
     public void OnToggleAudio(bool b) {
         settings.OnToggleAudio(b, unlocalizedAudio);
+
+        components.textAudioOn.gameObject.SetActive(b);
+        components.textAudioOff.gameObject.SetActive(!b);
     }
 
     public void OnToggleGraphical(bool b) {
@@ -311,12 +334,12 @@ public class UIManager : MonoBehaviour {
         settings.OnToggleGraphical(b, unlocalizedGraphics);
 
         if (!b) {
-            components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings == Graphical.High;
-            components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings == Graphical.Low;
+            components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.High;
+            components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.Low;
         } 
         else {
-            components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings == Graphical.High;
-            components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings == Graphical.Low;
+            components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.High;
+            components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.Low;
         }
     }
 

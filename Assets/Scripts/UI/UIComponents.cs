@@ -15,11 +15,19 @@ public class UIComponents : MonoBehaviour {
     public Transform buttonBackBegin;
 
     [Header("HUD")]
-    public Transform imageHealthFill;
-    public Transform imageFoodBarFill;
-    public Transform imageExperienceBarFill;
+    [Header("Icons")]
+    public GameObject iconParent;
+    public Transform imageHealthFillIcon;
+    public Transform imageFoodBarFillIcon;
+    public Transform imageExperienceBarFillIcon;
+    public Transform textLevelIcon;
+    [Header("Bars")]
+    public GameObject barParent;
+    public Transform imageHealthFillBar;
+    public Transform imageFoodBarFillBar;
+    public Transform imageExperienceBarFillBar;
     public Transform textExperience;
-    public Transform textLevel;
+    public Transform textLevelBar;
     public Transform buttonSettings;
     public Transform buttonAlpha;
 
@@ -42,17 +50,13 @@ public class UIComponents : MonoBehaviour {
     [Header("Settings Screen")]
     public Transform textSettingsTitle;
     public Transform textLanguage;
-    public Transform textTutorial;
-    public Transform textTutorialStart;
     public Transform textGraphical;
     public Transform textGraphicalLow;
-    public Transform textGraphicalMed;
     public Transform textGraphicalHigh;
     public Transform textAudio;
-    public Transform textAudioOnOff;
-    public Transform buttonTutorial;
+    public Transform textAudioOn;
+    public Transform textAudioOff;
     public Transform buttonGraphicsLow;
-    public Transform buttonGraphicsMed;
     public Transform buttonGraphicsHigh;
     public Transform buttonAudio;
     public Transform buttonBackSettings;
