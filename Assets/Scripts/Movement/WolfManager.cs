@@ -38,23 +38,31 @@ public class WolfManager : MonoBehaviour {
     }
 
     void Start () { 
-        for (int i = 0; i < amountOfWolves; i++) {
+        
+    }
+
+    public void LoadPack(Pack pack) {
+        food = pack.food;
+        experience = pack.experience;
+        level = pack.level;
+
+        for (int i = 0; i < pack.amountOfWolves; i++) {
             WolfMovement m = Instantiate(wolfObj).GetComponent<WolfMovement>();
             Vector2 ran = Random.insideUnitCircle * amountOfWolves;
-            m.transform.position = startingPosition + new Vector3(ran.x, 0, ran.y);
+            m.transform.position = pack.startingPosition + new Vector3(ran.x, 0, ran.y);
             m.transform.eulerAngles = new Vector3(0, Random.Range(0f, 360f), 0);
             m.manager = this;
 
             Wolf wolf = m.GetComponent<Wolf>();
             wolf.wolfManager = this;
             wolf.maxHealth = maxhealth;
-            wolf.health = maxhealth;
+            wolf.health = pack.health[i];
 
             wolfList.Add(m);
             animalList.Add(m.transform);
         }
 
-        Load();
+        //Load();
         LoadBeginScreen();
 
         StartCoroutine(FirstUpdate());

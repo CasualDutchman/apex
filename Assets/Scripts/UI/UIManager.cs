@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour {
     Settingsmanager settings;
     SkillManager skillManager;
     SeasonManager seasonManager;
+    PackManager packManager;
 
     Dictionary<string, LocalizedItem> textRegistry = new Dictionary<string, LocalizedItem>();
 
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour {
     [Header("HUD")]
     public string unlocalizedExperience;
     public string unlocalizedLevel;
+    string unlocalizedLevelIcon;
     public string unlocalizedAlpha;
 
     [Header("Begin")]
@@ -57,9 +59,12 @@ public class UIManager : MonoBehaviour {
     public string unlocalizedAudio;
     public string unlocalizedAudioOn;
     public string unlocalizedAudioOff;
+    public Sprite toggleOnSprite, toggleOffSprite;
 
     void Awake() {
         instance = this;
+
+        unlocalizedLevelIcon = unlocalizedLevel + "i";
     }
 
     void Start() {
@@ -67,6 +72,7 @@ public class UIManager : MonoBehaviour {
         skillManager = GetComponent<SkillManager>();
         seasonManager = GetComponent<SeasonManager>();
         wolfManager = GetComponent<WolfManager>();
+        packManager = GetComponent<PackManager>();
         RegisterTexts();
         LoadSettings();
 
@@ -87,6 +93,7 @@ public class UIManager : MonoBehaviour {
                 skillManager.SaveSkills();
                 seasonManager.OnQuit();
                 wolfManager.Save();
+                packManager.Save();
                 Analyzer.instance.SendData();
                 PlayerPrefs.Save();
                 Application.Quit();
@@ -99,6 +106,7 @@ public class UIManager : MonoBehaviour {
             skillManager.SaveSkills();
             seasonManager.OnQuit();
             wolfManager.Save();
+            packManager.Save();
             Analyzer.instance.SendData();
             PlayerPrefs.Save();
         }
@@ -108,6 +116,7 @@ public class UIManager : MonoBehaviour {
         //HUD
         RegisterText(components.textExperience, unlocalizedExperience);
         RegisterText(components.textLevelBar, unlocalizedLevel);
+        RegisterText(components.textLevelIcon, unlocalizedLevelIcon);
         RegisterButton(components.buttonSettings, () => ChangeScreen(Screens.Settings));
         RegisterButton(components.buttonAlpha, () => ChangeScreen(Screens.Alpha));
         //RegisterText(components.buttonAlpha.GetChild(0), unlocalizedAlpha);
@@ -290,7 +299,11 @@ public class UIManager : MonoBehaviour {
     }
 
     public void UpdateLevelText(int i) {
-        UpdateText(unlocalizedLevel, i, "");
+        if (useIconUI) {
+            UpdateText(unlocalizedLevelIcon, i, "");
+        } else {
+            UpdateText(unlocalizedLevel, i, "");
+        }
     }
     #endregion
 
@@ -308,6 +321,8 @@ public class UIManager : MonoBehaviour {
         components.textAudioOn.gameObject.SetActive(settings.audioSettings == OnOff.On);
         components.textAudioOff.gameObject.SetActive(settings.audioSettings == OnOff.Off);
 
+        components.buttonAudio.GetComponent<Image>().sprite = settings.audioSettings == OnOff.On ? toggleOnSprite : toggleOffSprite;
+
         components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.High;
         components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.Low;
 
@@ -323,6 +338,7 @@ public class UIManager : MonoBehaviour {
 
         components.textAudioOn.gameObject.SetActive(b);
         components.textAudioOff.gameObject.SetActive(!b);
+        components.buttonAudio.GetComponent<Image>().sprite = b ? toggleOnSprite : toggleOffSprite;
     }
 
     public void OnToggleGraphical(bool b) {

@@ -13140,7 +13140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &911481420
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18137,11 +18137,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -20806,14 +20806,14 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 0.10715128
-      outSlope: 0.10715128
+      inSlope: 0.1124718
+      outSlope: 0.1124718
       tangentMode: 0
     - serializedVersion: 2
       time: 1.0011597
       value: 1
-      inSlope: 0.11741161
-      outSlope: 0.11741161
+      inSlope: -0.08667792
+      outSlope: -0.08667792
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -20884,7 +20884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components: {fileID: 1082495126}
   eventSystem: {fileID: 2129838035}
-  useIconUI: 0
+  useIconUI: 1
   unlocalizedExperience: hudxptext
   unlocalizedLevel: hudleveltext
   unlocalizedAlpha: sideAlpha
@@ -20899,6 +20899,8 @@ MonoBehaviour:
   unlocalizedAudio: settingAudio
   unlocalizedAudioOn: settingOn
   unlocalizedAudioOff: settingOff
+  toggleOnSprite: {fileID: 21300038, guid: c8d5bded623b5834bb448b1552772657, type: 3}
+  toggleOffSprite: {fileID: 21300040, guid: c8d5bded623b5834bb448b1552772657, type: 3}
 --- !u!114 &1454943235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20910,6 +20912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d0848ef4469f34584c45f81bb7b00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wolfManager: {fileID: 1454943227}
   packList: []
 --- !u!1 &1455516981
 GameObject:
@@ -23477,11 +23480,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -25528,7 +25531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1953081370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26491,11 +26494,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

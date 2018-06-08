@@ -1,5 +1,6 @@
 //Hud
 hudleveltext={0}
+hudleveltexti={0}
 hudxptext={0}/{1}
 sidealpha=Alpha
 

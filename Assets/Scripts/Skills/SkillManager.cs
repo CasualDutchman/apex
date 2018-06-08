@@ -85,6 +85,56 @@ public class SkillManager : MonoBehaviour {
         skills[4].skill = skillListB[Random.Range(0, skillListB.Count)];
     }
 
+    public SkillSave[] GetRandomSkillSaves() {
+        skills = new SkillItem[5];
+        for (int i = 0; i < 5; i++) {
+            skills[i] = new SkillItem();
+        }
+        completedSkillArray = new bool[5];
+        for (int i = 0; i < 5; i++) {
+            completedSkillArray[i] = false;
+        }
+
+        List<Skill> skillList = new List<Skill>(Resources.LoadAll<Skill>(resourceLocation));
+        List<Skill> skillListA = new List<Skill>();
+        List<Skill> skillListB = new List<Skill>();
+        foreach (Skill skill in skillList) {
+            if (skill.skillType == SkillType.A) {
+                skillListA.Add(skill);
+            } else {
+                skillListB.Add(skill);
+            }
+        }
+
+        skills[0].skill = skillListA[Random.Range(0, skillListA.Count)];
+        skillListA.Remove(skills[0].skill);
+        skills[1].skill = skillListA[Random.Range(0, skillListA.Count)];
+
+        skills[2].skill = skillListB[Random.Range(0, skillListB.Count)];
+        skillListB.Remove(skills[2].skill);
+        skills[3].skill = skillListB[Random.Range(0, skillListB.Count)];
+        skillListB.Remove(skills[3].skill);
+        skills[4].skill = skillListB[Random.Range(0, skillListB.Count)];
+
+        SkillSave[] skillSaves = new SkillSave[5];
+        for (int i = 0; i < 5; i++) {
+            skillSaves[i].skillName = skills[i].skill.name;
+            skillSaves[i].skillCount = 0;
+            skillSaves[i].skillFinish = false;
+        }
+        return skillSaves;
+    }
+
+    public void LoadPack(Pack pack) {
+        skills = new SkillItem[5];
+        completedSkillArray = new bool[5];
+        for (int i = 0; i < pack.skills.Length; i++) {
+            skills[i].skill = Resources.Load<Skill>(resourceLocation + "/" + pack.skills[i].skillName);
+            skills[i].animalCounter = pack.skills[i].skillCount;
+            completedSkillArray[i] = pack.skills[i].skillFinish;
+        }
+    }
+
     void LoadSkills() {
         skills = new SkillItem[5];
         completedSkillArray = new bool[5];
