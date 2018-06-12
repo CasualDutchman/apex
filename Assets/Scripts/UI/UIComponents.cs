@@ -7,7 +7,7 @@ public class UIComponents : MonoBehaviour {
 
     [Header("Screens")]
     public GameObject screenHUD;
-    public GameObject screenAlpha, screenSettings, screenBegin;
+    public GameObject screenAlpha, screenSettings, screenBegin, screenPack;
 
     [Header("Begin")]
     public Transform textBeginTitle;
@@ -31,8 +31,6 @@ public class UIComponents : MonoBehaviour {
     public Transform buttonSettings;
     public Transform buttonAlpha;
 
-    //[Header("Wolf Pack Screen")]
-
     [Header("Alpha Screen")]
     public Transform textAlphaTitle;
     public Transform skillA1;
@@ -46,6 +44,18 @@ public class UIComponents : MonoBehaviour {
     public Transform skillDescReq;
     public Transform skillDescBack;
     public Transform buttonBackAlpha;
+    public Transform buttonToPack;
+
+    [Header("Pack Screen")]
+    public Transform textPackTitle;
+    public Transform textPackDescriptionTitle;
+    public Transform textPackDescription;
+    public Transform textPackList;
+    public Transform textPackListParent;
+    public Transform textPackTemplate;
+    public Transform buttonPackSwitch;
+    public Transform buttonBackPack;
+    public Transform buttonToAlpha;
 
     [Header("Settings Screen")]
     public Transform textSettingsTitle;
@@ -56,9 +66,13 @@ public class UIComponents : MonoBehaviour {
     public Transform textAudio;
     public Transform textAudioOn;
     public Transform textAudioOff;
+    public Transform textIconOn;
+    public Transform textIconOff;
+    public Transform textIcons;
     public Transform buttonGraphicsLow;
     public Transform buttonGraphicsHigh;
     public Transform buttonAudio;
+    public Transform buttonIcons;
     public Transform buttonBackSettings;
     public Transform buttonEnglish;
     public Transform buttonDutch;

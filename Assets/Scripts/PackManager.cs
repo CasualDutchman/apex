@@ -9,7 +9,7 @@ public class PackManager : MonoBehaviour {
 
     public List<Pack> packList = new List<Pack>();
 
-    int packIndex = 0;
+    public int packIndex = 0;
     Pack currentPack;
 
 	void Start () {
@@ -56,6 +56,7 @@ public class PackManager : MonoBehaviour {
 
                 pack.skills = new SkillSave[5];
                 for (int p = 0; p < 5; p++) {
+                    pack.skills[p] = new SkillSave();
                     pack.skills[p].skillName = data[newbegin + 2 + (3 * p) + 0];
                     pack.skills[p].skillCount = int.Parse(data[newbegin + 2 + (3 * p) + 1]);
                     pack.skills[p].skillFinish = int.Parse(data[newbegin + 2 + (3 * p) + 2]) == 1;
@@ -73,7 +74,17 @@ public class PackManager : MonoBehaviour {
         skillManager.LoadPack(currentPack);
     }
 
+    public void SwitchPack(int newIndex) {
+
+    }
+
+    public void SaveCurrentPack() {
+        wolfManager.SavePack(packList[packIndex]);
+    }
+
     public void Save() {
+        SaveCurrentPack();
+
         PlayerPrefs.SetInt("PackCount", packList.Count);
         PlayerPrefs.SetInt("PackIndex", packIndex);
         for (int i = 0; i < packList.Count; i++) {

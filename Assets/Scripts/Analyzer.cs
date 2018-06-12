@@ -16,6 +16,11 @@ public class Analyzer : MonoBehaviour {
 
     int raccoonKilled, foxKilled, coyoteKilles, jackalKilled, dogKilled, cougarKilled, tigerKilled, bearKilled, grizzlyKilled, reindeerKilled, mooseKilles, bisonKilles, muskoxKilled;
 
+    bool iconUI;
+    int switchedtoIcon, switchedtoBar;
+
+    public float distanceWalked;
+
     void Awake() {
         instance = this;
     }
@@ -25,36 +30,63 @@ public class Analyzer : MonoBehaviour {
     }
 
     public void SendData() {
-        Dictionary<string, object> dict = new Dictionary<string, object>();
-
-        dict.Add("Playtime", playTime);
-        dict.Add("Damage to enemies", damageToEnemies);
-        dict.Add("Damage to wolves", damageToWolves);
+        Dictionary<string, object> dict = new Dictionary<string, object> {
+            { "Playtime", playTime },
+            { "Damage to enemies", damageToEnemies },
+            { "Damage to wolves", damageToWolves },
+            { "Distance walked", distanceWalked }
+        };
 
         AnalyticsResult result = Analytics.CustomEvent("OnEndGame", dict);
 
-        dict = new Dictionary<string, object>();
-        dict.Add("prey killed", preyKilled);
+        dict = new Dictionary<string, object> {
+            { "prey killed", preyKilled },
 
-        dict.Add("Amount reindeer killed", reindeerKilled);
-        dict.Add("Amount moose killed", mooseKilles);
-        dict.Add("Amount bison killed", bisonKilles);
-        dict.Add("Amount muskox killed", muskoxKilled);
+            { "Amount reindeer killed", reindeerKilled },
+            { "Amount moose killed", mooseKilles },
+            { "Amount bison killed", bisonKilles },
+            { "Amount muskox killed", muskoxKilled }
+        };
         AnalyticsResult result2 = Analytics.CustomEvent("OnEndGamePrey", dict);
 
-        dict = new Dictionary<string, object>();
-        dict.Add("predator killed", predatorKilled);
+        dict = new Dictionary<string, object> {
+            { "predator killed", predatorKilled },
 
-        dict.Add("Amount raccoon killed", raccoonKilled);
-        dict.Add("Amount fox killed", foxKilled);
-        dict.Add("Amount coyote killed", coyoteKilles);
-        dict.Add("Amount jackal killed", jackalKilled);
-        dict.Add("Amount dog killed", dogKilled);
-        dict.Add("Amount cougar killed", cougarKilled);
-        dict.Add("Amount tiger killed", tigerKilled);
-        dict.Add("Amount bear killed", bearKilled);
-        dict.Add("Amount grizzly killed", grizzlyKilled);
+            { "Amount raccoon killed", raccoonKilled },
+            { "Amount fox killed", foxKilled },
+            { "Amount coyote killed", coyoteKilles },
+            { "Amount jackal killed", jackalKilled },
+            { "Amount dog killed", dogKilled },
+            { "Amount cougar killed", cougarKilled },
+            { "Amount tiger killed", tigerKilled },
+            { "Amount bear killed", bearKilled },
+            { "Amount grizzly killed", grizzlyKilled }
+        };
         AnalyticsResult result3 = Analytics.CustomEvent("OnEndGamePredator", dict);
+
+        dict = new Dictionary<string, object> {
+            { "Use Icons", iconUI },
+            { "Use Bars", !iconUI },
+            { "UI to Bar", switchedtoBar },
+            { "UI to Icon", switchedtoIcon }
+        };
+        AnalyticsResult result4 = Analytics.CustomEvent("OnEndGameUI", dict);
+    }
+
+    public void SetIconUI(bool b) {
+        iconUI = b;
+    }
+
+    public void SwitchIconUI(bool b) {
+        if (b == iconUI)
+            return;
+
+        if (b) {
+            switchedtoIcon++;
+        } else {
+            switchedtoBar++;
+        }
+        iconUI = b;
     }
 
     public void AddWolfDamage(float amount) {

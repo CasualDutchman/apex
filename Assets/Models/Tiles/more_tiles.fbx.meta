@@ -1,0 +1,432 @@
+fileFormatVersion: 2
+guid: 0f7a66e1fd583f0499a154b38b5a2575
+timeCreated: 1528805783
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: autumn
+    100002: autumn.001
+    100004: autumn.002
+    100006: autumn.003
+    100008: autumn.004
+    100010: bush2
+    100012: bush2.001
+    100014: bush3
+    100016: Cube
+    100018: Cube.001
+    100020: Cube.006
+    100022: Cylinder
+    100024: Cylinder.000
+    100026: Cylinder.002
+    100028: Cylinder.003
+    100030: Cylinder.004
+    100032: Cylinder.005
+    100034: Cylinder.006
+    100036: Cylinder.007
+    100038: Cylinder.008
+    100040: Cylinder.009
+    100042: flower
+    100044: flower2
+    100046: grass1
+    100048: grass2
+    100050: //RootNode
+    100052: mushroom
+    100054: mushroom.001
+    100056: mushroom.002
+    100058: mushroom2
+    100060: mushroom3
+    100062: Plane
+    100064: RAbush2
+    100066: RAbush2.001
+    100068: rhubarb
+    100070: spring
+    100072: spring.001
+    100074: spring.002
+    100076: spring.003
+    100078: spring.004
+    100080: stick bush
+    100082: stone1
+    100084: stone1.001
+    100086: stone1.002
+    100088: stone2
+    100090: stone2.001
+    100092: stone2.002
+    100094: summer
+    100096: summer.001
+    100098: summer.002
+    100100: summer.003
+    100102: summer.004
+    100104: tile 1 trees
+    100106: tile1
+    100108: tile2
+    100110: tile2 trees
+    100112: tile3
+    100114: tile3 trees
+    100116: tile4
+    100118: tile4 trees
+    100120: tile5
+    100122: tile5 trees
+    100124: winter
+    100126: winter.001
+    100128: winter.002
+    100130: winter.003
+    100132: winter.004
+    400000: autumn
+    400002: autumn.001
+    400004: autumn.002
+    400006: autumn.003
+    400008: autumn.004
+    400010: bush2
+    400012: bush2.001
+    400014: bush3
+    400016: Cube
+    400018: Cube.001
+    400020: Cube.006
+    400022: Cylinder
+    400024: Cylinder.000
+    400026: Cylinder.002
+    400028: Cylinder.003
+    400030: Cylinder.004
+    400032: Cylinder.005
+    400034: Cylinder.006
+    400036: Cylinder.007
+    400038: Cylinder.008
+    400040: Cylinder.009
+    400042: flower
+    400044: flower2
+    400046: grass1
+    400048: grass2
+    400050: //RootNode
+    400052: mushroom
+    400054: mushroom.001
+    400056: mushroom.002
+    400058: mushroom2
+    400060: mushroom3
+    400062: Plane
+    400064: RAbush2
+    400066: RAbush2.001
+    400068: rhubarb
+    400070: spring
+    400072: spring.001
+    400074: spring.002
+    400076: spring.003
+    400078: spring.004
+    400080: stick bush
+    400082: stone1
+    400084: stone1.001
+    400086: stone1.002
+    400088: stone2
+    400090: stone2.001
+    400092: stone2.002
+    400094: summer
+    400096: summer.001
+    400098: summer.002
+    400100: summer.003
+    400102: summer.004
+    400104: tile 1 trees
+    400106: tile1
+    400108: tile2
+    400110: tile2 trees
+    400112: tile3
+    400114: tile3 trees
+    400116: tile4
+    400118: tile4 trees
+    400120: tile5
+    400122: tile5 trees
+    400124: winter
+    400126: winter.001
+    400128: winter.002
+    400130: winter.003
+    400132: winter.004
+    2300000: autumn
+    2300002: autumn.001
+    2300004: autumn.002
+    2300006: autumn.003
+    2300008: autumn.004
+    2300010: bush2
+    2300012: bush2.001
+    2300014: bush3
+    2300016: Cube
+    2300018: Cube.001
+    2300020: Cube.006
+    2300022: Cylinder
+    2300024: Cylinder.000
+    2300026: Cylinder.002
+    2300028: Cylinder.003
+    2300030: Cylinder.004
+    2300032: Cylinder.005
+    2300034: Cylinder.006
+    2300036: Cylinder.007
+    2300038: Cylinder.008
+    2300040: Cylinder.009
+    2300042: flower
+    2300044: flower2
+    2300046: grass1
+    2300048: grass2
+    2300050: mushroom
+    2300052: mushroom.001
+    2300054: mushroom.002
+    2300056: mushroom2
+    2300058: mushroom3
+    2300060: Plane
+    2300062: RAbush2
+    2300064: RAbush2.001
+    2300066: rhubarb
+    2300068: spring
+    2300070: spring.001
+    2300072: spring.002
+    2300074: spring.003
+    2300076: spring.004
+    2300078: stick bush
+    2300080: stone1
+    2300082: stone1.001
+    2300084: stone1.002
+    2300086: stone2
+    2300088: stone2.001
+    2300090: stone2.002
+    2300092: summer
+    2300094: summer.001
+    2300096: summer.002
+    2300098: summer.003
+    2300100: summer.004
+    2300102: tile 1 trees
+    2300104: tile1
+    2300106: tile2
+    2300108: tile2 trees
+    2300110: tile3
+    2300112: tile3 trees
+    2300114: tile4
+    2300116: tile4 trees
+    2300118: tile5
+    2300120: tile5 trees
+    2300122: winter
+    2300124: winter.001
+    2300126: winter.002
+    2300128: winter.003
+    2300130: winter.004
+    3300000: autumn
+    3300002: autumn.001
+    3300004: autumn.002
+    3300006: autumn.003
+    3300008: autumn.004
+    3300010: bush2
+    3300012: bush2.001
+    3300014: bush3
+    3300016: Cube
+    3300018: Cube.001
+    3300020: Cube.006
+    3300022: Cylinder
+    3300024: Cylinder.000
+    3300026: Cylinder.002
+    3300028: Cylinder.003
+    3300030: Cylinder.004
+    3300032: Cylinder.005
+    3300034: Cylinder.006
+    3300036: Cylinder.007
+    3300038: Cylinder.008
+    3300040: Cylinder.009
+    3300042: flower
+    3300044: flower2
+    3300046: grass1
+    3300048: grass2
+    3300050: mushroom
+    3300052: mushroom.001
+    3300054: mushroom.002
+    3300056: mushroom2
+    3300058: mushroom3
+    3300060: Plane
+    3300062: RAbush2
+    3300064: RAbush2.001
+    3300066: rhubarb
+    3300068: spring
+    3300070: spring.001
+    3300072: spring.002
+    3300074: spring.003
+    3300076: spring.004
+    3300078: stick bush
+    3300080: stone1
+    3300082: stone1.001
+    3300084: stone1.002
+    3300086: stone2
+    3300088: stone2.001
+    3300090: stone2.002
+    3300092: summer
+    3300094: summer.001
+    3300096: summer.002
+    3300098: summer.003
+    3300100: summer.004
+    3300102: tile 1 trees
+    3300104: tile1
+    3300106: tile2
+    3300108: tile2 trees
+    3300110: tile3
+    3300112: tile3 trees
+    3300114: tile4
+    3300116: tile4 trees
+    3300118: tile5
+    3300120: tile5 trees
+    3300122: winter
+    3300124: winter.001
+    3300126: winter.002
+    3300128: winter.003
+    3300130: winter.004
+    4300000: tile5 trees
+    4300002: tile5
+    4300004: spring.004
+    4300006: winter.004
+    4300008: autumn.004
+    4300010: summer.004
+    4300012: tile4
+    4300014: spring.003
+    4300016: winter.003
+    4300018: autumn.003
+    4300020: summer.003
+    4300022: tile4 trees
+    4300024: tile3
+    4300026: spring.002
+    4300028: winter.001
+    4300030: autumn
+    4300032: tile3 trees
+    4300034: summer.002
+    4300036: tile2
+    4300038: spring
+    4300040: winter
+    4300042: tile2 trees
+    4300044: autumn.002
+    4300046: summer
+    4300048: RAbush2.001
+    4300050: stone2.002
+    4300052: stone1.002
+    4300054: bush2.001
+    4300056: mushroom.002
+    4300058: RAbush2
+    4300060: tile1
+    4300062: winter.002
+    4300064: autumn.001
+    4300066: spring.001
+    4300068: summer.001
+    4300070: tile 1 trees
+    4300072: grass1
+    4300074: grass2
+    4300076: rhubarb
+    4300078: mushroom2
+    4300080: mushroom3
+    4300082: stick bush
+    4300084: flower2
+    4300086: mushroom.001
+    4300088: stone2.001
+    4300090: stone1.001
+    4300092: Cube.001
+    4300094: bush3
+    4300096: Cylinder.009
+    4300098: Cylinder.008
+    4300100: Cylinder.007
+    4300102: Cylinder.006
+    4300104: Cylinder.005
+    4300106: Cube
+    4300108: Cylinder.002
+    4300110: Cylinder
+    4300112: Cylinder.000
+    4300114: Cylinder.004
+    4300116: Cylinder.003
+    4300118: stone2
+    4300120: stone1
+    4300122: bush2
+    4300124: mushroom
+    4300126: flower
+    4300128: Cube.006
+    4300130: Plane
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 0760f624051868542aec3fffbb938373, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 3e9205ae19223554f9f97b5fb068c454, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 126fab11adb2fde49b4cce6fbeaaa399, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

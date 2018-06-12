@@ -118,9 +118,11 @@ public class SkillManager : MonoBehaviour {
 
         SkillSave[] skillSaves = new SkillSave[5];
         for (int i = 0; i < 5; i++) {
-            skillSaves[i].skillName = skills[i].skill.name;
-            skillSaves[i].skillCount = 0;
-            skillSaves[i].skillFinish = false;
+            SkillSave save = new SkillSave();
+            save.skillName = skills[i].skill.name;
+            save.skillCount = 0;
+            save.skillFinish = false;
+            skillSaves[i] = save;
         }
         return skillSaves;
     }
@@ -129,6 +131,7 @@ public class SkillManager : MonoBehaviour {
         skills = new SkillItem[5];
         completedSkillArray = new bool[5];
         for (int i = 0; i < pack.skills.Length; i++) {
+            skills[i] = new SkillItem();
             skills[i].skill = Resources.Load<Skill>(resourceLocation + "/" + pack.skills[i].skillName);
             skills[i].animalCounter = pack.skills[i].skillCount;
             completedSkillArray[i] = pack.skills[i].skillFinish;

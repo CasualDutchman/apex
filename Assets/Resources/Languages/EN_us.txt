@@ -9,6 +9,11 @@ whengone=When you were gone:
 gonenormal=Your wolves are well rested\nThey ate {0} food
 goneattacked=You got attacked!\nYour wolves lost {0} health each\nThey stole {1} food
 
+//Pack
+packtitle=Pack
+packdetail=Pack Details
+packlist=Pack List
+
 //Settings
 settingstitle=Settings
 settinglanguage=Language
@@ -17,6 +22,7 @@ settingtutorialstart=Start
 settinggraphical=Quality
 settingaudio=Sound
 settingaudioonoff=On/Off
+settingicons=Icons;
 settingon=On
 settingoff=Off
 settinglow=Low

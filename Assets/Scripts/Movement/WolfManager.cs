@@ -41,6 +41,17 @@ public class WolfManager : MonoBehaviour {
         
     }
 
+    public void SavePack(Pack pack) {
+        pack.food = food;
+        pack.experience = experience;
+        pack.level = level;
+
+        pack.health = new float[pack.amountOfWolves];
+        for (int i = 0; i < pack.amountOfWolves; i++) {
+            pack.health[i] = wolfList[i].GetComponent<Wolf>().health;
+        }
+    }
+
     public void LoadPack(Pack pack) {
         food = pack.food;
         experience = pack.experience;
@@ -77,7 +88,7 @@ public class WolfManager : MonoBehaviour {
 
             int max = 672;//672 is the amount of 15 min in 7 days
             int min15 = Mathf.Clamp(Mathf.FloorToInt((float)differ.TotalMinutes / 15f), 0, max);
-            Debug.Log(differ.TotalMinutes);
+            //Debug.Log(differ.TotalMinutes);
             if (min15 > 0) {
                 components.screenBegin.SetActive(true);
                 components.textBeginTitle.GetComponent<TextMeshProUGUI>().text = LocalizationManager.instance.GetLocalizedValue("whengone");

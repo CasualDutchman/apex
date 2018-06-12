@@ -20,3 +20,9 @@ MonoBehaviour:
   extraEnemyDamage: -2
   foodConsumptionPerMinute: 0
   healthRegenOnResting: 0
+  backgroundColor: {r: 0.8235294, g: 0.6878893, b: 0.58131486, a: 1}
+  textColor: {r: 0.9558824, g: 0.8968426, b: 0.85045415, a: 1}
+  secondaryTextColor: {r: 0.22794116, g: 0.13430952, b: 0.0972102, a: 1}
+  xpBar: {r: 1, g: 1, b: 1, a: 1}
+  healthBar: {r: 1, g: 1, b: 1, a: 1}
+  hungerBar: {r: 1, g: 1, b: 1, a: 1}

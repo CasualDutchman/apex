@@ -18,4 +18,8 @@ public class SeasonalAttributes : ScriptableObject {
     public float foodConsumptionPerMinute;
     public float healthRegenOnResting;
 
+    [Header("UI")]
+    public Color backgroundColor;
+    public Color textColor, secondaryTextColor;
+    public Color xpBar, healthBar, hungerBar;
 }

@@ -34,6 +34,8 @@ public class InputManager : MonoBehaviour{
                 dir = dir.magnitude > 1 ? dir.normalized : dir;
                 input = new Vector3(dir.x, 0, dir.y);
 
+                Analyzer.instance.distanceWalked += input.magnitude * Time.deltaTime;
+
                 float rot = Quaternion.LookRotation(input).eulerAngles.y;
                 knob.rectTransform.localEulerAngles = new Vector3(0, 0, -rot);
             }

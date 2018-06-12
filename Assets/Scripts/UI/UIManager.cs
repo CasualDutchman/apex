@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public enum Screens { Begin, Hud, Settings, Alpha }
+public enum Screens { Begin, Hud, Settings, Alpha, Pack }
 
 [System.Serializable]
 public class SkillHolder {
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour {
     public UIComponents components;
     public EventSystem eventSystem;
 
-    public bool useIconUI = false;
+    bool useIconUI;
 
     WolfManager wolfManager;
     Settingsmanager settings;
@@ -50,12 +50,18 @@ public class UIManager : MonoBehaviour {
     [Header("Alpha")]
     public string unlocalizedAlphaTitle;
 
+    [Header("Pack")]
+    public string unlocalizedPackTitle;
+    public string unlocalizedPackDetailTitle;
+    public string unlocalizedPackPackTitle;
+
     [Header("Settings")]
     public string unlocalizedSettingsTitle;
     public string unlocalizedLanguage;
     public string unlocalizedGraphics;
     public string unlocalizedGraphicsLow;
     public string unlocalizedGraphicsHigh;
+    public string unlocalizedIcons;
     public string unlocalizedAudio;
     public string unlocalizedAudioOn;
     public string unlocalizedAudioOff;
@@ -76,12 +82,57 @@ public class UIManager : MonoBehaviour {
         RegisterTexts();
         LoadSettings();
 
+        if (PlayerPrefs.HasKey("IconUI")) {
+            useIconUI = PlayerPrefs.GetInt("IconUI") == 1;
+        } else {
+            useIconUI = Random.value < 0.5f;
+        }
+
+        Analyzer.instance.SetIconUI(useIconUI);
+
         if (useIconUI) {
             components.iconParent.SetActive(true);
             components.barParent.SetActive(false);
         } else {
             components.iconParent.SetActive(false);
             components.barParent.SetActive(true);
+        }
+
+        ColorUI();
+    }
+
+    public Image[] ignoreImages;
+    public TextMeshProUGUI[] secondaryTexts;
+
+    void ColorUI() {
+        Image[] im = components.transform.GetComponentsInChildren<Image>(true);
+        for (int i = 0; i < im.Length; i++) {
+            bool ignore = false;
+            for (int j = 0; j < ignoreImages.Length; j++) {
+                if (im[i] == ignoreImages[j]) {
+                    ignore = true;
+                    break;
+                }
+            }
+            if (ignore)
+                continue;
+
+            im[i].color = seasonManager.seasonAttribute.backgroundColor;
+        }
+
+        TextMeshProUGUI[] tm = components.transform.GetComponentsInChildren<TextMeshProUGUI>(true);
+        for (int i = 0; i < tm.Length; i++) {
+            bool second = false;
+            for (int j = 0; j < secondaryTexts.Length; j++) {
+                if (tm[i] == secondaryTexts[j]) {
+                    secondaryTexts[j].color = seasonManager.seasonAttribute.secondaryTextColor;
+                    second = true;
+                    break;
+                }
+            }
+
+            if(!second)
+                tm[i].color = seasonManager.seasonAttribute.textColor;
         }
     }
 
@@ -90,12 +141,7 @@ public class UIManager : MonoBehaviour {
             if (currentScreen != Screens.Hud) {
                 ChangeScreen(Screens.Hud);
             } else {
-                skillManager.SaveSkills();
-                seasonManager.OnQuit();
-                wolfManager.Save();
-                packManager.Save();
-                Analyzer.instance.SendData();
-                PlayerPrefs.Save();
+                Save();
                 Application.Quit();
             }
         }
@@ -103,13 +149,19 @@ public class UIManager : MonoBehaviour {
 
     void OnApplicationPause(bool pause) {
         if (pause) {
-            skillManager.SaveSkills();
-            seasonManager.OnQuit();
-            wolfManager.Save();
-            packManager.Save();
-            Analyzer.instance.SendData();
-            PlayerPrefs.Save();
+            Save();
         }
+    }
+
+    void Save() {
+        PlayerPrefs.SetInt("IconUI", useIconUI ? 1 : 0);
+
+        skillManager.SaveSkills();
+        seasonManager.OnQuit();
+        wolfManager.Save();
+        packManager.Save();
+        Analyzer.instance.SendData();
+        PlayerPrefs.Save();
     }
 
     void RegisterTexts() {
@@ -132,6 +184,15 @@ public class UIManager : MonoBehaviour {
         RegisterSkill(components.skillB3, 4);
         RegisterButton(components.skillDescBack, () => HideSkillDesc());
         RegisterButton(components.buttonBackAlpha, () => ChangeScreen(Screens.Hud));
+        RegisterButton(components.buttonToPack, () => ChangeScreen(Screens.Pack));
+
+        //Pack
+        RegisterText(components.textPackTitle, unlocalizedPackTitle);
+        RegisterText(components.textPackDescriptionTitle, unlocalizedPackDetailTitle);
+        RegisterText(components.textPackList, unlocalizedPackPackTitle);
+        RegisterButton(components.buttonPackSwitch, () => Switch());
+        RegisterButton(components.buttonBackPack, () => ChangeScreen(Screens.Hud));
+        RegisterButton(components.buttonToAlpha, () => ChangeScreen(Screens.Alpha));
 
         //Settings
         RegisterButton(components.buttonBackSettings, () => ChangeScreen(Screens.Hud));
@@ -143,11 +204,14 @@ public class UIManager : MonoBehaviour {
         RegisterText(components.textAudio, unlocalizedAudio);
         RegisterText(components.textAudioOn, unlocalizedAudioOn);
         RegisterText(components.textAudioOff, unlocalizedAudioOff);
+        RegisterText(components.textIcons, unlocalizedIcons);
         RegisterToggle(components.buttonAudio, (b) => { OnToggleAudio(b); });
+        RegisterToggle(components.buttonIcons, (b) => { OnIcon(b); });
         RegisterButton(components.buttonEnglish, () => OnChangeLanguage("EN_us"));
         RegisterButton(components.buttonDutch, () => OnChangeLanguage("NL_nl"));
         RegisterButton(components.buttonGraphicsHigh, () => OnToggleGraphical(true));
         RegisterButton(components.buttonGraphicsLow, () => OnToggleGraphical(false));
+        
     }
 
     public bool IsHittingUI() {
@@ -218,12 +282,16 @@ public class UIManager : MonoBehaviour {
             case Screens.Alpha: return components.screenAlpha;
             case Screens.Settings: return components.screenSettings;
             case Screens.Begin: return components.screenBegin;
+            case Screens.Pack: return components.screenPack;
         }
     }
 
     public void ChangeScreen(Screens screen) {
         if (screen == Screens.Alpha) {
             OnAlphaOpened();
+        }else if (screen == Screens.Pack) {
+            selected = -1;
+            UpdatePackList();
         }
         StartCoroutine(IEChangeScreen(screen));
     }
@@ -307,6 +375,41 @@ public class UIManager : MonoBehaviour {
     }
     #endregion
 
+    #region Pack
+    int selected = 0;
+
+    void Select(int i) {
+        selected = i;
+
+        components.buttonPackSwitch.gameObject.SetActive(selected != packManager.packIndex);
+    }
+
+    void Switch() {
+
+    }
+
+    public void UpdatePackList() {
+        selected = packManager.packIndex;
+        components.buttonPackSwitch.gameObject.SetActive(selected != packManager.packIndex);
+
+        for (int i = 1; i < components.textPackListParent.childCount; i++) {
+            Destroy(components.textPackListParent.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < packManager.packList.Count; i++) {
+            Pack pack = packManager.packList[i];
+            int index = i;
+
+            GameObject go = Instantiate(components.textPackTemplate.gameObject, components.textPackListParent);
+            go.GetComponent<Button>().onClick.AddListener(() => Select(index));
+            go.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Pack " + i;
+            go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level " + pack.level;
+            go.transform.GetChild(2).GetComponent<Image>().color = packManager.packIndex == i ? Color.green : Color.white;
+            go.SetActive(true);
+        }
+    }
+#endregion
+
     #region Settings
     void LoadSettings() {
         settings.graphicalSettings = PlayerPrefs.GetInt(unlocalizedGraphics) == 0 ? Graphical.High : Graphical.Low;
@@ -320,8 +423,13 @@ public class UIManager : MonoBehaviour {
 
         components.textAudioOn.gameObject.SetActive(settings.audioSettings == OnOff.On);
         components.textAudioOff.gameObject.SetActive(settings.audioSettings == OnOff.Off);
-
         components.buttonAudio.GetComponent<Image>().sprite = settings.audioSettings == OnOff.On ? toggleOnSprite : toggleOffSprite;
+
+        ChangeIcon(useIconUI);
+
+        components.textIconOn.gameObject.SetActive(useIconUI);
+        components.textIconOff.gameObject.SetActive(!useIconUI);
+        components.buttonIcons.GetComponent<Image>().sprite = useIconUI ? toggleOnSprite : toggleOffSprite;
 
         components.buttonGraphicsHigh.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.High;
         components.buttonGraphicsLow.GetChild(0).GetComponent<Image>().enabled = settings.graphicalSettings != Graphical.Low;
@@ -329,8 +437,20 @@ public class UIManager : MonoBehaviour {
         settings.EnableSettings();
     }
 
-    public void OnTutorial() {
+    void ChangeIcon(bool b) {
+        components.iconParent.SetActive(b);
+        components.barParent.SetActive(!b);
+    }
 
+    public void OnIcon(bool b) {
+        useIconUI = b;
+
+        ChangeIcon(b);
+        Analyzer.instance.SwitchIconUI(b);
+
+        components.textIconOn.gameObject.SetActive(b);
+        components.textIconOff.gameObject.SetActive(!b);
+        components.buttonIcons.GetComponent<Image>().sprite = b ? toggleOnSprite : toggleOffSprite;
     }
 
     public void OnToggleAudio(bool b) {
