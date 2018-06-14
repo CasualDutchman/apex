@@ -16,6 +16,24 @@ public class PackManager : MonoBehaviour {
         Load();
 	}
 
+    [ContextMenu("Add")]
+    public void AddPack() {
+        Pack pack = new Pack {
+            amountOfWolves = 3,
+            food = 50,
+            experience = 0,
+            level = 1
+        };
+        pack.health = new float[pack.amountOfWolves];
+        for (int i = 0; i < pack.amountOfWolves; i++) {
+            pack.health[i] = 80;
+        }
+
+        pack.skills = skillManager.GetRandomSkillSaves();
+
+        packList.Add(pack);
+    }
+
     void LoadFirst() {
         Pack pack = new Pack {
             amountOfWolves = 3,

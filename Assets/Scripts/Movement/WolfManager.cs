@@ -137,7 +137,7 @@ public class WolfManager : MonoBehaviour {
 
         foodTimer += Time.deltaTime;
         if (foodTimer >= 1) {
-            food -= foodDepletePS;
+            food = Mathf.Clamp(food - foodDepletePS, 0, maxFood);
             UpdateFoodBar();
             foodTimer -= 1;
         }

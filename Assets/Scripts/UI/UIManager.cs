@@ -381,7 +381,23 @@ public class UIManager : MonoBehaviour {
     void Select(int i) {
         selected = i;
 
+        Debug.Log(i);
+
         components.buttonPackSwitch.gameObject.SetActive(selected != packManager.packIndex);
+
+        Pack pack = packManager.packList[selected];
+
+        float overallHealth = 0;
+        for (int j = 0; j < pack.amountOfWolves; j++) {
+            overallHealth += pack.health[j];
+        }
+        overallHealth /= pack.amountOfWolves;
+
+        components.textPackDescription.GetComponent<TextMeshProUGUI>().text =   "Pack " + i + "\n" + 
+                                                                                "Amount of wolves = " + pack.amountOfWolves + "\n" + 
+                                                                                "Level = " + pack.level + "\n" + 
+                                                                                "Overall health = " + overallHealth.ToString("F1") + "%" + "\n" + 
+                                                                                "Food = " + pack.food.ToString("F1") + "%" + "\n";
     }
 
     void Switch() {
@@ -401,11 +417,12 @@ public class UIManager : MonoBehaviour {
             int index = i;
 
             GameObject go = Instantiate(components.textPackTemplate.gameObject, components.textPackListParent);
+            go.SetActive(true);
+
             go.GetComponent<Button>().onClick.AddListener(() => Select(index));
             go.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Pack " + i;
             go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Level " + pack.level;
             go.transform.GetChild(2).GetComponent<Image>().color = packManager.packIndex == i ? Color.green : Color.white;
-            go.SetActive(true);
         }
     }
 #endregion
