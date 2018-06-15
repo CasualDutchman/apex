@@ -50,9 +50,13 @@ public class WolfManager : MonoBehaviour {
         for (int i = 0; i < pack.amountOfWolves; i++) {
             pack.health[i] = wolfList[i].GetComponent<Wolf>().health;
         }
+
+        pack.startingPosition = startingPosition;
     }
 
     public void LoadPack(Pack pack) {
+        startingPosition = pack.startingPosition;
+
         food = pack.food;
         experience = pack.experience;
         level = pack.level;

@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour {
 
 	void Start () {
         cameraLook = transform.GetChild(0).GetChild(0);
-	}
+    }
 	
 	void Update () {
         transform.position = Vector3.Lerp(transform.position, manager.GetCenter(), Time.deltaTime);

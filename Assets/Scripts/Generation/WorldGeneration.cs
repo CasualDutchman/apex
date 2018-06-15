@@ -9,6 +9,8 @@ public class WorldGeneration : MonoBehaviour {
     public SeasonManager seasonManager;
     public EnemyManager enemyManager;
 
+    public WolfManager wolfManager;
+
     [HideInInspector]
     public float playTime;
 
@@ -27,7 +29,6 @@ public class WorldGeneration : MonoBehaviour {
     bool isMakingChunks = true;
     bool needMakingChunks = true;
 
-    public Vector3 startingPosition;
     Vector3 playerPosition;
     Vector3 viewPosition;
 
@@ -37,14 +38,10 @@ public class WorldGeneration : MonoBehaviour {
     List<GameObject> restingList = new List<GameObject>();
 
     void Awake() {
-        if (PlayerPrefs.HasKey("StartPos")) {
-            string[] data = PlayerPrefs.GetString("StartPos").Split('/');
-            startingPosition.x = float.Parse(data[0]);
-            startingPosition.z = float.Parse(data[1]);
-        }
 
-        GetComponent<WolfManager>().startingPosition = startingPosition;
-        cameraRig.position = startingPosition;
+        GetComponent<WolfManager>().startingPosition = wolfManager.startingPosition;
+        cameraRig.GetComponent<CameraMovement>().enabled = false;
+        cameraRig.position = wolfManager.startingPosition;
 
         if (useLoadingScreen) {
             loadingScreen.SetActive(true);
@@ -64,7 +61,7 @@ public class WorldGeneration : MonoBehaviour {
             }
         }
 
-        playerPosition = new Vector3(Mathf.FloorToInt(startingPosition.x / tileSize), 0, Mathf.FloorToInt(startingPosition.z / tileSize)); ;
+        playerPosition = new Vector3(Mathf.FloorToInt(wolfManager.startingPosition.x / tileSize), 0, Mathf.FloorToInt(wolfManager.startingPosition.z / tileSize)); ;
         
         LoadArray();
         UpdateView();
@@ -157,6 +154,7 @@ public class WorldGeneration : MonoBehaviour {
 
                 if (!firstLoaded) {
                     loadingScreen.SetActive(false);
+                    cameraRig.GetComponent<CameraMovement>().enabled = true;
                 }
 
                 break;

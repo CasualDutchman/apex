@@ -34,7 +34,9 @@ public class Analyzer : MonoBehaviour {
             { "Playtime", playTime },
             { "Damage to enemies", damageToEnemies },
             { "Damage to wolves", damageToWolves },
-            { "Distance walked", distanceWalked }
+            { "Distance walked", distanceWalked },
+            { "Network Carrier", Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork },
+            { "Network Lan", Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork }
         };
 
         AnalyticsResult result = Analytics.CustomEvent("OnEndGame", dict);

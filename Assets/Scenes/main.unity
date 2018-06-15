@@ -20972,6 +20972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seasonManager: {fileID: 1454943228}
   enemyManager: {fileID: 1454943229}
+  wolfManager: {fileID: 1454943227}
   playTime: 0
   useLoadingScreen: 1
   loadingScreen: {fileID: 771603222}
@@ -20980,7 +20981,6 @@ MonoBehaviour:
   tileSize: 12
   loadDiameter: 4
   cameraRig: {fileID: 1368990692}
-  startingPosition: {x: 100, y: 0, z: 0}
 --- !u!4 &1454943225
 Transform:
   m_ObjectHideFlags: 0
