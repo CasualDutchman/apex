@@ -4,6 +4,14 @@ hudleveltexti={0}
 hudxptext={0}/{1}
 sidealpha=Alpha
 
+//Note
+pluspack=+1 Pack
+lowhealth=Low Health
+nohealth= No Health!
+lowfood=Low Food
+nofood=No Food!
+skillcomplete=Skill completed
+
 //Begin
 whengone=When you were gone:
 gonenormal=Your wolves are well rested\nThey ate {0} food
@@ -64,7 +72,7 @@ hunt=Hunt {0}/{1} {2}
 skillhunterinstinctname=Hunter's instinct
 skillhunterinstinctdesc=Pack deals more damage to the enemies (+ 15 damage)
 skillhunterintelligencename=Hunter's intelligence
-skillhunterintelligencedesc=Move faster (+3 movement)
+skillhunterintelligencedesc=Enemies move slower
 skillscentpreyname=Scent of prey
 skillscentpreydesc=Alpha can smell/hear prey/food nearby from a distance
 skillseasonedhuntername=Seasoned hunter
@@ -76,4 +84,6 @@ skillsilenthunterdesc=Enemies don’t move towards the pack while the pack is out 
 skillsurvivalintinctname=Survival intinct
 skillsurvivalintinctdesc=Alpha can smell/hear enemies nearby from a distance
 skillwolfbondname=Wolf bond
-skillwolfbonddesc=Pack takes less damage from all enemies (-5 to enemies damage)
+skillwolfbonddesc=Pack takes less damage from all enemies
+skillwolfcachename=Wolf Cache
+skillwolfcachedesc=Pack takes no additional food to heal while resting

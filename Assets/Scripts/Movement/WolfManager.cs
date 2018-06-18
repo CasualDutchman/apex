@@ -15,6 +15,7 @@ public class WolfManager : MonoBehaviour {
 
     public float maxhealth;
     float allHeath;
+    float healthTimer;
 
     public float maxFood;
     public float food;
@@ -23,7 +24,8 @@ public class WolfManager : MonoBehaviour {
 
     public float experience;
     public int level;
-
+    public int levelPackInbetween;
+    int nextPack;
 
     List<WolfMovement> wolfList = new List<WolfMovement>();
     Vector3 wolfCenter;
@@ -77,7 +79,7 @@ public class WolfManager : MonoBehaviour {
             animalList.Add(m.transform);
         }
 
-        //Load();
+        Load();
         LoadBeginScreen();
 
         StartCoroutine(FirstUpdate());
@@ -96,7 +98,6 @@ public class WolfManager : MonoBehaviour {
             if (min15 > 0) {
                 components.screenBegin.SetActive(true);
                 components.textBeginTitle.GetComponent<TextMeshProUGUI>().text = LocalizationManager.instance.GetLocalizedValue("whengone");
-
 
                 bool attacked = Random.Range(0, 3 + (max * ((1 / 1.035f) * min15))) <= 2;
                 if (attacked) {
@@ -118,6 +119,7 @@ public class WolfManager : MonoBehaviour {
                         wolfList[i].GetComponent<Wolf>().health = Mathf.Clamp(wolfList[i].GetComponent<Wolf>().health + (min15 * 5), 0, maxhealth);
                     }
                 }
+                uiManager.SetScreen(Screens.Begin);
             } else {
                 uiManager.ChangeScreen(Screens.Hud);
             }
@@ -145,41 +147,32 @@ public class WolfManager : MonoBehaviour {
             UpdateFoodBar();
             foodTimer -= 1;
         }
+
+        if (food <= 0) {
+            healthTimer += Time.deltaTime;
+            if (healthTimer >= 3) {
+                for (int i = 0; i < amountOfWolves; i++) {
+                    wolfList[i].GetComponent<Wolf>().health = Mathf.Clamp(wolfList[i].GetComponent<Wolf>().health - 1, 0, maxhealth);
+                }
+                healthTimer -= 3;
+            }
+            UpdatehealthBar();
+        }
     }
 
 
     public void Load() {
-        if (PlayerPrefs.HasKey("WolfPack")) {
-            string[] wolfData = PlayerPrefs.GetString("WolfPack").Split('/');
-            food = float.Parse(wolfData[0]);
-            experience = float.Parse(wolfData[1]);
-            level = int.Parse(wolfData[2]);
-        }
-
-        if (PlayerPrefs.HasKey("Wolfs")) {
-            string[] data = PlayerPrefs.GetString("Wolfs").Split('/');
-            for (int i = 0; i < data.Length; i++) {
-                wolfList[i].GetComponent<Wolf>().health = float.Parse(data[i]);
-            }
+        if (PlayerPrefs.HasKey("NextPack")) {
+            nextPack = PlayerPrefs.GetInt("NextPack");
+        } else {
+            nextPack = 5;
         }
     }
 
     public void Save() {
-        string str = "";
-        str += food.ToString("F2") + "/";
-        str += experience.ToString("F2") + "/";
-        str += level.ToString("F0");
-
-        PlayerPrefs.SetString("WolfPack", str);
-
-        string str2 = "";
-        for (int i = 0; i < wolfList.Count; i++) {
-            str2 += wolfList[i].GetComponent<Wolf>().health.ToString("F2") + (i < wolfList.Count - 1 ? "/" : "");
-        }
-
-        PlayerPrefs.SetString("Wolfs", str2);
-
         PlayerPrefs.SetString("SavedTime", System.DateTime.Now.ToBinary().ToString());
+
+        PlayerPrefs.SetInt("NextPack", nextPack);
     }
 
     IEnumerator FirstUpdate() {
@@ -190,7 +183,7 @@ public class WolfManager : MonoBehaviour {
     }
 
     float GetMaxExperience() {
-        return 100 + (Mathf.Floor(level / 4f) * 50);
+        return 100 + (level * 40);
     }
 
     public void AddFood(float f) {
@@ -211,8 +204,26 @@ public class WolfManager : MonoBehaviour {
         if (experience >= GetMaxExperience()) {
             experience -= GetMaxExperience();
             level++;
+            if (level == nextPack) {
+                AddPack();
+            }
         }
         UpdateExperience();
+    }
+
+    public void DeletePack() {
+        for (int i = 0; i < amountOfWolves; i++) {
+            animalList.Remove(wolfList[i].transform);
+            Destroy(wolfList[i].gameObject);
+        }
+        wolfList.Clear();
+    }
+
+    void AddPack() {
+        PackManager pm = GetComponent<PackManager>();
+        pm.AddPack();
+        nextPack += levelPackInbetween;
+        Notifier.instance.AddNotification("pluspack");
     }
 
     public void UpdatehealthBar() {

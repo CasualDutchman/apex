@@ -31,8 +31,9 @@ public class RestingArea : MonoBehaviour {
             if (!lookList.Contains(other.transform)) {
                 lookList.Add(other.transform);
 
-                string s = transform.position.x.ToString("F3") + "/" + transform.position.z.ToString("F3");
-                PlayerPrefs.SetString("StartPos", s);
+                if(other.gameObject.layer == LayerMask.NameToLayer("Wolf")) {
+                    other.GetComponent<Wolf>().wolfManager.startingPosition = new Vector3(transform.position.x, 0, transform.position.z);
+                }
             }
     }
 

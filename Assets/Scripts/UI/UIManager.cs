@@ -286,13 +286,18 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public void SetScreen(Screens s) {
+        currentScreen = s;
+    }
+
     public void ChangeScreen(Screens screen) {
         if (screen == Screens.Alpha) {
             OnAlphaOpened();
         }else if (screen == Screens.Pack) {
-            selected = -1;
             UpdatePackList();
+            Select(packManager.packIndex);
         }
+
         StartCoroutine(IEChangeScreen(screen));
     }
 
@@ -381,8 +386,6 @@ public class UIManager : MonoBehaviour {
     void Select(int i) {
         selected = i;
 
-        Debug.Log(i);
-
         components.buttonPackSwitch.gameObject.SetActive(selected != packManager.packIndex);
 
         Pack pack = packManager.packList[selected];
@@ -401,7 +404,7 @@ public class UIManager : MonoBehaviour {
     }
 
     void Switch() {
-
+        packManager.SwitchPack(selected);
     }
 
     public void UpdatePackList() {

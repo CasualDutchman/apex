@@ -17,6 +17,10 @@ public class PackManager : MonoBehaviour {
 	}
 
     [ContextMenu("Add")]
+    public void Add() {
+        AddPack();
+    }
+
     public void AddPack() {
         Pack pack = new Pack {
             amountOfWolves = 3,
@@ -93,11 +97,41 @@ public class PackManager : MonoBehaviour {
     }
 
     public void SwitchPack(int newIndex) {
+        Save();
+        PlayerPrefs.Save();
 
+        wolfManager.DeletePack();
+
+        UIManager.instance.ChangeScreen(Screens.Hud);
+
+        packIndex = newIndex;
+        currentPack = packList[packIndex];
+        GetComponent<WorldGeneration>().cameraRig.position = currentPack.startingPosition;
+        GetComponent<WorldGeneration>().NeedsLoadingScreen(currentPack.startingPosition);
+        wolfManager.LoadPack(currentPack);
+        skillManager.LoadPack(currentPack);
+
+        StartCoroutine(SwitchCheck());
+    }
+
+    IEnumerator SwitchCheck() {
+        WorldGeneration wg = GetComponent<WorldGeneration>();
+        bool check = true;
+        float timer = 0;
+        while (check) {
+            timer += Time.deltaTime;
+            if (timer >= 1.5f && !wg.isMakingChunks) {
+                GetComponent<WorldGeneration>().loadingScreen.SetActive(false);
+                check = false;
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void SaveCurrentPack() {
         wolfManager.SavePack(packList[packIndex]);
+        skillManager.SavePack(packList[packIndex]);
     }
 
     public void Save() {

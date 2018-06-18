@@ -1674,12 +1674,12 @@ MonoBehaviour:
   homePos: {x: 0, y: 0, z: 0}
   enemyType: 0
   animalType: 10
-  maxSpeed: 2.5
-  maxHealth: 20
-  experienceGain: 20
-  foodGain: 10
-  attackTime: 0
-  attackDamage: 0
+  maxSpeed: 5.1
+  maxHealth: 120
+  experienceGain: 40
+  foodGain: 40
+  attackTime: 1
+  attackDamage: 2
 --- !u!135 &135385743370898252
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -28,6 +28,9 @@ public class UIComponents : MonoBehaviour {
     public Transform imageExperienceBarFillBar;
     public Transform textExperience;
     public Transform textLevelBar;
+
+    public Transform notifyBox;
+    public Transform notifyText;
     public Transform buttonSettings;
     public Transform buttonAlpha;
 

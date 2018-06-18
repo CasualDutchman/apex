@@ -16,11 +16,11 @@ public class SkillManager : MonoBehaviour {
     }
 
     void Start () {
-        if (PlayerPrefs.HasKey("Skill0")) {
-            LoadSkills();
-        } else {
-            GetRandomSkills();
-        }
+        //if (PlayerPrefs.HasKey("Skill0")) {
+        //    LoadSkills();
+        //} else {
+        //    GetRandomSkills();
+        //}
 	}
 
     public float GetSkillShareAmount(string s) {
@@ -43,10 +43,11 @@ public class SkillManager : MonoBehaviour {
 
     public void KillAnimal(AnimalType type) {
         for (int i = 0; i < skills.Length; i++) {
-            if (skills[i].skill.requiredAnimal == type) {
+            if (skills[i].skill.skillType == SkillType.A && skills[i].skill.requiredAnimal == type) {
                 skills[i].animalCounter++;
                 if (skills[i].animalCounter >= skills[i].skill.animalCount) {
                     completedSkillArray[i] = true;
+                    Notifier.instance.AddNotification("skillcomplete");
                 }
                 break;
             }
@@ -135,6 +136,14 @@ public class SkillManager : MonoBehaviour {
             skills[i].skill = Resources.Load<Skill>(resourceLocation + "/" + pack.skills[i].skillName);
             skills[i].animalCounter = pack.skills[i].skillCount;
             completedSkillArray[i] = pack.skills[i].skillFinish;
+        }
+    }
+
+    public void SavePack(Pack pack) {
+        for (int i = 0; i < pack.skills.Length; i++) {
+            pack.skills[i].skillName = skills[i].skill.name;
+            pack.skills[i].skillCount = skills[i].animalCounter;
+            pack.skills[i].skillFinish = completedSkillArray[i];
         }
     }
 

@@ -1190,8 +1190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efb1de5d154b5f4e88673bb2ffb714d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
-  maxHealth: 100
+  wolfManager: {fileID: 0}
+  maxSpeed: 5.5
+  maxHealth: 80
+  health: 0
   attackTime: 1.5
   attackDamage: 10
 --- !u!114 &114704033309007158

@@ -19,4 +19,4 @@ MonoBehaviour:
   requiredAnimal: 9
   animalCount: 50
   skillShare: 3
-  skillShareAmount: 3
+  skillShareAmount: 0.3

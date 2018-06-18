@@ -61,8 +61,11 @@ public class Enemy : MonoBehaviour, IAttackable {
     }
 
     public void Damage(float f, bool isWolf) {
-        health -= f;
-        Analyzer.instance.AddEnemyDamage(f);
+        bool b = SkillManager.instance.IsSkillActive("hunterInstinct");
+        float ff = SkillManager.instance.GetSkillShareAmount("hunterInstinct");
+        float d = (b ? f + ff : f);
+        health -= d;
+        Analyzer.instance.AddEnemyDamage(d);
         if (health <= 0) {
             OnDeath(isWolf);
         }

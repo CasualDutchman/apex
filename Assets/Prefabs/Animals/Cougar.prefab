@@ -1078,12 +1078,12 @@ MonoBehaviour:
   homePos: {x: 0, y: 0, z: 0}
   enemyType: 1
   animalType: 5
-  maxSpeed: 5
-  maxHealth: 20
-  experienceGain: 25
-  foodGain: 5
-  attackTime: 2
-  attackDamage: 10
+  maxSpeed: 4.5
+  maxHealth: 70
+  experienceGain: 30
+  foodGain: 0
+  attackTime: 1
+  attackDamage: 15
 --- !u!114 &114855547079202966
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -87,6 +87,10 @@ public class EnemyMovement : MonoBehaviour, IMoveable {
                 currentMaxSpeed = maxSpeed + (chaseTime < 2 ? 1.5f : (chaseTime > 5 ? -0.5f : 0));
 
                 if (lookList.Count <= 0) {
+                    if(chaseTarget == null) {
+                        enemyState = EnemyState.Idle;
+                    }
+
                     target = chaseTarget.position;
                     Vector3 dif = chaseTarget.position - transform.position;
                     velocity = dif.magnitude > 1 ? dif.normalized : dif;
@@ -97,6 +101,10 @@ public class EnemyMovement : MonoBehaviour, IMoveable {
                         enemyState = EnemyState.Idle;
                     }
                 } else {
+                    if(!closest) {
+                        enemyState = EnemyState.Idle;
+                    }
+
                     IMoveable moveable = closest.GetComponent<IMoveable>();
                     bool moving = moveable.OnMove();
                     if (moving) {
@@ -119,7 +127,7 @@ public class EnemyMovement : MonoBehaviour, IMoveable {
                 }
             } else if (enemyState == EnemyState.Flee) {
                 fleeTime += Time.deltaTime;
-                currentMaxSpeed = maxSpeed + (fleeTime < 4 ? 1 : 0);
+                currentMaxSpeed = maxSpeed + (fleeTime < 4 ? 1 : (fleeTime > 7 ? -1 : 0));
                 currentMaxSpeed *= enemy.GetHealth() <= enemy.maxHealth * 0.5f ? 0.5f : 1;
 
                 if (lookList.Count <= 0) {
@@ -190,6 +198,8 @@ public class EnemyMovement : MonoBehaviour, IMoveable {
             }
             yield return new WaitForEndOfFrame();
         }
+
+        anim.SetBool("Attack", false);
 
         yield return 0;
     }

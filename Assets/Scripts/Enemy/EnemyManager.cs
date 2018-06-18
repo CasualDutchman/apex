@@ -170,7 +170,9 @@ public class EnemyManager : MonoBehaviour {
         else { type = SpawnType.None; }
 
         if (type != SpawnType.None) {
-            float f2 = Mathf.PerlinNoise(x * perlin2, y * perlin2);
+            //float f2 = Mathf.PerlinNoise(x * perlin2, y * perlin2);
+            System.Random rng = new System.Random(0);
+            float f2 = rng.Next(0, 100) / 100f;
             i = Mathf.FloorToInt(f2 * (float)(type == SpawnType.Prey ? preys.Count : predators.Count));
         }
         return type;

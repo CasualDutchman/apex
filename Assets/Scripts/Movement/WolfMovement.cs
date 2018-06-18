@@ -46,7 +46,9 @@ public class WolfMovement : MonoBehaviour, IMoveable {
         Vector3 input = inputManager.GetInputVector();
 
         if(input.magnitude > 0) {
-            velocity = input;
+            bool b = SkillManager.instance.IsSkillActive("hunterIntelligence");
+            float ff = SkillManager.instance.GetSkillShareAmount("hunterIntelligence");
+            velocity = (b ? input + (input * ff): input);
             if(wolfState == WolfState.Attack) {
                 OnAttack();
             }else {
@@ -98,6 +100,11 @@ public class WolfMovement : MonoBehaviour, IMoveable {
 
     void OnAttack() {
         if (lookList.Count > 0) {
+            if (closest == null) {
+                attackTimer = 0;
+                return;
+            }
+
             IMoveable moveable = closest.GetComponent<IMoveable>();
             bool moving = moveable.OnMove();
             if(moving) {
@@ -152,8 +159,11 @@ public class WolfMovement : MonoBehaviour, IMoveable {
 
         closest = null;
 
-        if(lookList.Count <= 0)
+        if (lookList.Count <= 0) {
             wolfState = WolfState.Idle;
+        }
+
+        anim.SetBool("Attack", false);
     }
 
     void ChangeState() {

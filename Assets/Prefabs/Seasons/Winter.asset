@@ -15,7 +15,7 @@ MonoBehaviour:
   wolfOutline: {r: 0.8897059, g: 0.70201945, b: 0.20934255, a: 1}
   preyOutline: {r: 0.6269449, g: 0.8897059, b: 0.20934255, a: 1}
   predatorOutline: {r: 0.86764705, g: 0.24243082, b: 0.24243082, a: 1}
-  extraMobility: 1
+  extraMobility: 0.5
   extraDamage: 2
   extraEnemyDamage: 0
   foodConsumptionPerMinute: 0

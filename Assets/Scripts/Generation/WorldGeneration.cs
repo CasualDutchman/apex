@@ -17,7 +17,6 @@ public class WorldGeneration : MonoBehaviour {
     public bool useLoadingScreen;
     public GameObject loadingScreen;
     public Image loadingFill;
-    public TextMeshProUGUI loadingText;
     bool firstLoaded = false;
     int toLoad = 0, loaded = 0;
 
@@ -26,8 +25,10 @@ public class WorldGeneration : MonoBehaviour {
 
     public Transform cameraRig;
 
-    bool isMakingChunks = true;
+    public bool isMakingChunks = true;
     bool needMakingChunks = true;
+
+    bool allVisibleLoaded = false;
 
     Vector3 playerPosition;
     Vector3 viewPosition;
@@ -48,6 +49,11 @@ public class WorldGeneration : MonoBehaviour {
         }
     }
 
+    [ContextMenu("Clear PlayerPref")]
+    public void Clear() {
+        PlayerPrefs.DeleteAll();
+    }
+
     void Start () {
         Application.targetFrameRate = 300;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -61,7 +67,7 @@ public class WorldGeneration : MonoBehaviour {
             }
         }
 
-        playerPosition = new Vector3(Mathf.FloorToInt(wolfManager.startingPosition.x / tileSize), 0, Mathf.FloorToInt(wolfManager.startingPosition.z / tileSize)); ;
+        playerPosition = new Vector3(Mathf.FloorToInt(wolfManager.startingPosition.x / tileSize), 0, Mathf.FloorToInt(wolfManager.startingPosition.z / tileSize));
         
         LoadArray();
         UpdateView();
@@ -131,6 +137,12 @@ public class WorldGeneration : MonoBehaviour {
         }
     }
 
+    public void NeedsLoadingScreen(Vector3 pos) {
+        loadingScreen.SetActive(true);
+        playerPosition = new Vector3(Mathf.FloorToInt(pos.x / tileSize), 0, Mathf.FloorToInt(pos.z / tileSize));
+        //firstLoaded = false;
+    }
+
     IEnumerator MakeChunks() {
         while (isMakingChunks) {
             ChunkRequest currentRequest = null;
@@ -144,7 +156,6 @@ public class WorldGeneration : MonoBehaviour {
             if (!firstLoaded) {
                 loaded++;
                 loadingFill.fillAmount = loaded / (float)toLoad;
-                loadingText.text = ((loaded / (float)toLoad) * 100).ToString("F0");
             }
 
             if(currentRequest == null) {
@@ -154,7 +165,10 @@ public class WorldGeneration : MonoBehaviour {
 
                 if (!firstLoaded) {
                     loadingScreen.SetActive(false);
+                    playerPosition = new Vector3(Mathf.FloorToInt(wolfManager.startingPosition.x / tileSize), 0, Mathf.FloorToInt(wolfManager.startingPosition.z / tileSize));
+                    cameraRig.position = wolfManager.startingPosition;
                     cameraRig.GetComponent<CameraMovement>().enabled = true;
+                    firstLoaded = true;
                 }
 
                 break;

@@ -20,8 +20,11 @@ public class Wolf : MonoBehaviour, IAttackable {
     }
 
     public void Damage(float f, bool isWolf) {
-        health -= f;
-        Analyzer.instance.AddWolfDamage(f);
+        bool b = SkillManager.instance.IsSkillActive("wolfBond");
+        float ff = SkillManager.instance.GetSkillShareAmount("wolfBond");
+        float d = (b ? f - ff : f);
+        health -= d;
+        Analyzer.instance.AddWolfDamage(d);
         wolfManager.UpdatehealthBar();
         if (health <= 0) {
             OnDeath();
