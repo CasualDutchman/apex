@@ -181,6 +181,10 @@ public class EnemyMovement : MonoBehaviour, IMoveable {
                 IAttackable attackable = closest.GetComponent<IAttackable>();
                 attackable.Damage(10, false);
 
+                if (enemy.enemyType == EnemyType.Predator) {
+                    Settingsmanager.instance.PlaySound(enemy.damageClip);
+                }
+
                 if (!attackable.IsAlive()) {
                     lookList.Remove(closest);
                     chaseTarget = null;

@@ -438,6 +438,8 @@ public class UIManager : MonoBehaviour {
         settings.SetGraphical();
         settings.SetAudio();
 
+        settings.FirstAudio();
+
         //components.buttonGraphics.GetComponent<Toggle>().isOn = settings.graphicalSettings == Graphical.High;
         components.buttonAudio.GetComponent<Toggle>().isOn = settings.audioSettings == OnOff.On;
 

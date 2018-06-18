@@ -631,7 +631,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1349432088397464}
-  m_LocalRotation: {x: -0.60852325, y: -0.35349536, z: 0.6438065, w: 0.30042246}
+  m_LocalRotation: {x: -0.6085233, y: -0.3534954, z: 0.6438066, w: 0.3004225}
   m_LocalPosition: {x: -0.0013034005, y: 0.0050139455, z: -0.0017806367}
   m_LocalScale: {x: 1.0000036, y: 0.9999984, z: 1.0000007}
   m_Children:
@@ -1095,6 +1095,7 @@ MonoBehaviour:
   foodGain: 0
   attackTime: 1
   attackDamage: 5
+  damageClip: {fileID: 8300000, guid: 7c1fcb64c5eb69f4c96a1d7aa20b9e5a, type: 3}
 --- !u!135 &135911754858736920
 SphereCollider:
   m_ObjectHideFlags: 1

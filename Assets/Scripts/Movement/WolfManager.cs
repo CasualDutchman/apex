@@ -27,6 +27,8 @@ public class WolfManager : MonoBehaviour {
     public int levelPackInbetween;
     int nextPack;
 
+    public AudioClip wolfAttack;
+
     List<WolfMovement> wolfList = new List<WolfMovement>();
     Vector3 wolfCenter;
 

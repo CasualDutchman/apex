@@ -136,6 +136,8 @@ public class WolfMovement : MonoBehaviour, IMoveable {
                 IAttackable attackable = closest.GetComponent<IAttackable>();
                 attackable.Damage(attackDamage, true);
 
+                Settingsmanager.instance.PlaySound(wolf.wolfManager.wolfAttack);
+
                 if (!attackable.IsAlive()) {
                     manager.KillEnemy(closest);
                 }

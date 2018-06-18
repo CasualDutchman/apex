@@ -881,6 +881,7 @@ MonoBehaviour:
   foodGain: 0
   attackTime: 1
   attackDamage: 10
+  damageClip: {fileID: 8300000, guid: 18b5d05554ec0ad41949f19085cac3bb, type: 3}
 --- !u!114 &114379979703653074
 MonoBehaviour:
   m_ObjectHideFlags: 1

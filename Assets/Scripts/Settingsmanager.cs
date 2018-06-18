@@ -15,14 +15,18 @@ public class Settingsmanager : MonoBehaviour {
     Vector2Int nativeResolution;
 
     //audio
-    public AudioMixer mixer;
+    public AudioMixerGroup mixer;
     public GameObject audioPrefab;
+
+    public AudioSource bgmusicSource;
+    public AudioClip layer_default, layer_attack;
 
     void Awake() {
         nativeResolution = new Vector2Int(Display.main.systemWidth, Display.main.systemHeight);
 
         instance = this;
     }
+
 
     public void EnableSettings() {
         settingsLoaded = true;
@@ -42,7 +46,12 @@ public class Settingsmanager : MonoBehaviour {
     }
 
     public void SetAudio() {
+        mixer.audioMixer.SetFloat("Vol", audioSettings == OnOff.On ? 0 : -80);
+    }
 
+    public void FirstAudio() {
+        bgmusicSource.clip = layer_default;
+        bgmusicSource.Play();
     }
 
     public void OnToggleGraphical(bool b, string str) {
@@ -65,7 +74,8 @@ public class Settingsmanager : MonoBehaviour {
         if (audioSettings == OnOff.On) {
             GameObject go = Instantiate(audioPrefab);
             go.GetComponent<AudioSource>().clip = clip;
-            go.GetComponent<AudioSource>().outputAudioMixerGroup = mixer.outputAudioMixerGroup;
+            go.GetComponent<AudioSource>().outputAudioMixerGroup = mixer;
+            go.GetComponent<AudioSource>().Play();
         }
     }
 }

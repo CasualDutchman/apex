@@ -1269,6 +1269,7 @@ MonoBehaviour:
   foodGain: 20
   attackTime: 1
   attackDamage: 1
+  damageClip: {fileID: 8300000, guid: 9f672f7286766b84586dfa98d3b1739b, type: 3}
 --- !u!135 &135049242706281336
 SphereCollider:
   m_ObjectHideFlags: 1

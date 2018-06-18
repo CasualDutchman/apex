@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour, IAttackable {
     public float attackTime;
     public float attackDamage;
 
+    public AudioClip damageClip;
+
     Color deathColor;
     Renderer deathRenderer;
 
@@ -68,6 +70,10 @@ public class Enemy : MonoBehaviour, IAttackable {
         Analyzer.instance.AddEnemyDamage(d);
         if (health <= 0) {
             OnDeath(isWolf);
+        }else {
+            if (enemyType == EnemyType.Prey) {
+                Settingsmanager.instance.PlaySound(damageClip);
+            }
         }
     }
 
